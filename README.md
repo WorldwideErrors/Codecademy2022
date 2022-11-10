@@ -5,3 +5,9 @@ Je moet leren om de kennis uit de verschillende vakken in de opleiding te combin
 Dit document beschrijft de geïntegreerde eindopdracht van de vakken ‘Programmeren 2’ en
 ‘Relationele Databases 2’. Specifieke informatie over de inhoud van die vakken vind je bij de
 vakken op Brightspace.
+
+Groepsleden - Codecademy 7:
+Janko Seremak
+Jeffrey van Tillo
+Jeroen van Herwijnen
+Wouter Suijkerbuijk
