@@ -6,6 +6,7 @@
 package GUI;
 
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -22,7 +23,9 @@ public class Account {
         layout.setPrefSize(800, 500);
         
         
+        Button test = new Button("Hi");
         
+        layout.add(test, 1, 0);
         
         
         
