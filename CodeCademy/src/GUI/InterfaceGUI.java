@@ -23,6 +23,7 @@ public class InterfaceGUI extends Application {
     public void start(Stage stage) {
 //VIEWS
         CreateAccount accountView = new CreateAccount();
+        ViewAccount accountViewView = new ViewAccount();
 
         //WELCOME SCENE
         BorderPane mainPane = new BorderPane();
@@ -62,6 +63,11 @@ public class InterfaceGUI extends Application {
         createAccount.setOnAction((event) -> {
             Scene accountScene = new Scene(accountView.getView());
             stage.setScene(accountScene);
+        });
+
+        viewAccount.setOnAction((event2) -> {
+            Scene accountViewScene = new Scene(accountViewView.getView());
+            stage.setScene(accountViewScene);
         });
 
         //OTHER
