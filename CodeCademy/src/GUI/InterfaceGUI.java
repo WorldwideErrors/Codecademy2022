@@ -22,7 +22,7 @@ public class InterfaceGUI extends Application {
     @Override
     public void start(Stage stage) {
 //VIEWS
-        Account accountView = new Account();
+        CreateAccount accountView = new CreateAccount();
 
         //WELCOME SCENE
         BorderPane mainPane = new BorderPane();
@@ -57,6 +57,7 @@ public class InterfaceGUI extends Application {
 //CENTER
         centerView.setLeft(leftCenter);
         centerView.setRight(rightCenter);
+
 //SET ON ACTION
         createAccount.setOnAction((event) -> {
             Scene accountScene = new Scene(accountView.getView());
