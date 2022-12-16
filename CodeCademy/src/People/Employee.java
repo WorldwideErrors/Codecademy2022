@@ -7,26 +7,30 @@ public class Employee {
 
     public Employee(String name, String email) {
         this.name = name;
-        this.email = email;
+        this.email = formatEmail(email);
     }
 
     public String getName() {
         return this.name;
     }
-    
-public String formatEmail(String email) {
+
+    public String formatEmail(String email) {
         String[] parts = email.split("[@.]");
+
         
-        for (String i : parts) {
-            System.out.println(i);
-        }
-        for (int j = 0; j < parts.length; j++) {
-            if (parts[j].length() < 1) {
-                throw new IllegalArgumentException(this.name + " has an incorrect email.");
+        
+        try {
+
+            for (int j = 0; j < parts.length; j++) {
+                if (parts[j].length() < 1) {
+                    System.out.println("Error");
+                    throw new IllegalArgumentException(this.name + " has an incorrect email");
+                }
             }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Email incorrect");
         }
-        
-        System.out.println(email);
+
         return email;
     }
 }

@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import java.sql.*;
 import People.Employee;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -26,8 +27,6 @@ import javafx.scene.text.Text;
  */
 public class CreateAccount {
 
-    private Employee employee;
-
     public CreateAccount() {
     }
 
@@ -35,9 +34,11 @@ public class CreateAccount {
         BorderPane layout = new BorderPane();
         layout.setPrefSize(800, 500);
 
+        //BUTTONS CREATECURSIST AND CREATEEMPLOYEE
         Button createCursist = new Button("Create cursist");
         Button createEmployee = new Button("Create employee");
 
+        //BUTTONS LOCATION
         layout.setLeft(createCursist);
         layout.setRight(createEmployee);
 
@@ -47,31 +48,32 @@ public class CreateAccount {
         createCursist.setTranslateX(200);
         createEmployee.setTranslateX(-200);
 
-//VBOX LEFT CENTER
+//VBOX FOR BUTTON LEFT
         VBox leftCenter = new VBox();
         leftCenter.getChildren().addAll(createCursist);
 
-//VBOX RIGHT CENTER
+//VBOX FOR BUTTON RIGHT
         VBox rightCenter = new VBox();
         rightCenter.getChildren().addAll(createEmployee);
-//CENTER
+//LAYOUT PLACE BUTTONS LEFT AND RIGHT
         layout.setLeft(leftCenter);
         layout.setRight(rightCenter);
 
-        //BUTTON EVENT
+        //BUTTON EVENT CREATE CURSIST
+        //WIP
+        //BUTTON EVENT CREATE EMPLOYEE
         createEmployee.setOnAction((event) -> {
             VBox vertBox = new VBox(5);
             vertBox.setAlignment(Pos.TOP_CENTER);
 
             layout.setRight(null);
             layout.setLeft(null);
-
             layout.setCenter(vertBox);
 
             Text createEmp = new Text("Create an employee");
             createEmp.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
 
-            //INPUT
+            //INPUT FIELDS NAME
             HBox name = new HBox(10);
             name.setPadding(new Insets(20, 20, 0, 20));
             name.setAlignment(Pos.CENTER);
@@ -80,6 +82,7 @@ public class CreateAccount {
             labelName.setFont(Font.font("verdana", FontWeight.BOLD, 14));
             TextField inputName = new TextField();
 
+            //INPUT FIELDS EMAIL
             HBox email = new HBox(10);
             email.setPadding(new Insets(0, 20, 20, 20));
             email.setAlignment(Pos.CENTER);
@@ -88,18 +91,35 @@ public class CreateAccount {
             labelEmail.setFont(Font.font("verdana", FontWeight.BOLD, 14));
             TextField inputEmail = new TextField();
 
+            //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
             name.getChildren().addAll(labelName, inputName);
             email.getChildren().addAll(labelEmail, inputEmail);
 
+            //SAVE BUTTON
             Button saveEmployee = new Button("Save");
-            saveEmployee.setOnAction((event2) -> {
-                new Employee(inputName.getText(), inputEmail.getText());
-            });
 
-            vertBox.getChildren().addAll(createEmp, name, email, saveEmployee);
+            //BUTTON ON ACTION -> SAVES INPUTTED USER IN DATABASE
+            saveEmployee.setOnAction((event2) -> {
+                String URL = "jdbc:sqlserver://aei-sql2.avans.nl:1443;databaseName=CodeCademyRE;user=janko;password=Morgen;encrypt=true;trustServerCertificate=true";
+
+                try ( Connection conn = DriverManager.getConnection(URL);  Statement stmt = conn.createStatement();) {
+                    System.out.println("Inserting records into the table...");
+                    //SQL QUERY
+                    String sql = "INSERT INTO Employee VALUES ('" + inputName.getText() + "', '" + inputEmail.getText() + "')";
+                    stmt.executeUpdate(sql);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            );
+
+            //ADD ALL TO VBOX
+            vertBox.getChildren()
+                    .addAll(createEmp, name, email, saveEmployee);
             layout.setTop(vertBox);
 
-        });
+        }
+        );
 
         return layout;
     }
