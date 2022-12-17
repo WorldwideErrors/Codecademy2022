@@ -1,5 +1,9 @@
 package GUI;
 
+import GUI.Accounts.ViewAccount;
+import GUI.Accounts.CreateAccount;
+import GUI.Accounts.DeleteAccount;
+import GUI.Accounts.UpdateAccount;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -24,6 +28,8 @@ public class InterfaceGUI extends Application {
 //VIEWS
         CreateAccount accountView = new CreateAccount();
         ViewAccount accountViewView = new ViewAccount();
+        UpdateAccount accountUpdateView = new UpdateAccount();
+        DeleteAccount accountDeleteView = new DeleteAccount();
 
         //WELCOME SCENE
         BorderPane mainPane = new BorderPane();
@@ -37,7 +43,7 @@ public class InterfaceGUI extends Application {
         underMessage.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
         Welcome.getChildren().addAll(welcomeMessage, underMessage);
 
-        //ETC
+        //IDK
         BorderPane centerView = new BorderPane();
         mainPane.setPadding(new Insets(20, 20, 20, 20));
         centerView.setPadding(new Insets(20, 20, 20, 20));
@@ -45,17 +51,26 @@ public class InterfaceGUI extends Application {
         //BUTTONS
         Button createAccount = new Button("Create Account");
         Button viewAccount = new Button("View Account");
+        Button deleteAccount = new Button("Delete Account");
+        Button updateAccount = new Button("Update Account");
+
+        createAccount.setPrefWidth(145);
+        viewAccount.setPrefWidth(145);
+        deleteAccount.setPrefWidth(145);
+        updateAccount.setPrefWidth(145);
 
         createAccount.setTranslateX(200);
         viewAccount.setTranslateX(-200);
+        deleteAccount.setTranslateX(200);
+        updateAccount.setTranslateX(-200);
 
-//VBOX LEFT CENTER
-        VBox leftCenter = new VBox();
-        leftCenter.getChildren().addAll(createAccount);
-//VBOX RIGHT CENTER
-        VBox rightCenter = new VBox();
-        rightCenter.getChildren().addAll(viewAccount);
-//CENTER
+//VBOX LEFT CENTER FOR PLACING BUTTONS
+        VBox leftCenter = new VBox(5);
+        leftCenter.getChildren().addAll(createAccount, deleteAccount);
+//VBOX RIGHT CENTER FOR PLACING BUTTONS
+        VBox rightCenter = new VBox(5);
+        rightCenter.getChildren().addAll(viewAccount, updateAccount);
+//CENTER FOR PLACING THE VBOXES THAT CONTAIN THE BUTTONS
         centerView.setLeft(leftCenter);
         centerView.setRight(rightCenter);
 
@@ -70,6 +85,15 @@ public class InterfaceGUI extends Application {
             stage.setScene(accountViewScene);
         });
 
+        updateAccount.setOnAction((event3) -> {
+            Scene accountUpdateScene = new Scene(accountUpdateView.getView());
+            stage.setScene(accountUpdateScene);
+        });
+
+        deleteAccount.setOnAction((event4) -> {
+            Scene accountDeleteScene = new Scene(accountDeleteView.getView());
+            stage.setScene(accountDeleteScene);
+        });
         //OTHER
         mainPane.setTop(Welcome);
         mainPane.setCenter(centerView);
