@@ -105,7 +105,12 @@ public class CreateAccount {
                 try ( Connection conn = DriverManager.getConnection(URL);  Statement stmt = conn.createStatement();) {
                     System.out.println("Inserting records into the table...");
                     //SQL QUERY
+                    Employee temp = new Employee(inputName.getText(), inputEmail.getText());
                     String sql = "INSERT INTO Employee VALUES ('" + inputName.getText() + "', '" + inputEmail.getText() + "')";
+
+                    inputName.clear();
+                    inputEmail.clear();
+
                     stmt.executeUpdate(sql);
                 } catch (SQLException e) {
                     e.printStackTrace();
