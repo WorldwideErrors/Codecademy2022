@@ -33,6 +33,15 @@ public class CreateAccount {
     public Parent getView() {
         BorderPane layout = new BorderPane();
         layout.setPrefSize(800, 500);
+        layout.setPadding(new Insets(20, 20, 20, 20));
+
+        //TITLE 
+        VBox Welcome = new VBox();
+        Welcome.setAlignment(Pos.TOP_CENTER);
+        Text underMessage = new Text("Do you want to create a cursist or an employee?");
+        underMessage.setFont(Font.font("verdana", FontWeight.BOLD, 18));
+        underMessage.setTranslateY(100);
+        Welcome.getChildren().addAll(underMessage);
 
         //BUTTONS CREATECURSIST AND CREATEEMPLOYEE
         Button createCursist = new Button("Create cursist");
@@ -56,12 +65,13 @@ public class CreateAccount {
         VBox rightCenter = new VBox();
         rightCenter.getChildren().addAll(createEmployee);
 //LAYOUT PLACE BUTTONS LEFT AND RIGHT
+        layout.setTop(Welcome);
         layout.setLeft(leftCenter);
         layout.setRight(rightCenter);
 
         //BUTTON EVENT CREATE CURSIST
         //WIP
-        //BUTTON EVENT CREATE EMPLOYEE
+        //---------------->EMPLOYEE VIEW <----------------
         createEmployee.setOnAction((event) -> {
             VBox vertBox = new VBox(5);
             vertBox.setAlignment(Pos.TOP_CENTER);
