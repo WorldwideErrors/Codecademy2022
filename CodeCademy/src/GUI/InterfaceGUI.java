@@ -47,7 +47,7 @@ public class InterfaceGUI extends Application {
         mainPane.setPadding(new Insets(20, 20, 20, 20));
         centerView.setPadding(new Insets(20, 20, 20, 20));
 
-//DROPDOWN
+//DROPDOWN ACCOUNT
         MenuItem create = new MenuItem("Create Account");
         MenuItem view = new MenuItem("View Account");
         MenuItem update = new MenuItem("Update Account");
@@ -56,10 +56,22 @@ public class InterfaceGUI extends Application {
 
         accountMenu.setTranslateX(200);
         accountMenu.setPrefSize(104, 30);
+//DROPDOWN COURSE
+        MenuItem createC = new MenuItem("Create Course");
+        MenuItem viewC = new MenuItem("View Course");
+        MenuItem updateC = new MenuItem("Update Course");
+        MenuItem deleteC = new MenuItem("Delete Course");
+        MenuButton courseMenu = new MenuButton("Course", null, createC, viewC, updateC, deleteC);
+
+        
+        courseMenu.setTranslateX(200);
+        courseMenu.setPrefSize(104, 30);
+
+        
 
 //HBOX FOR MENUBUTTON
         HBox center = new HBox(5);
-        center.getChildren().addAll(accountMenu);
+        center.getChildren().addAll(accountMenu, courseMenu);
 
 //CENTER FOR PLACING THE MENUBUTTON
         centerView.setCenter(center);
