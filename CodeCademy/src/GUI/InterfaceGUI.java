@@ -4,18 +4,17 @@ import GUI.Accounts.ViewAccount;
 import GUI.Accounts.CreateAccount;
 import GUI.Accounts.DeleteAccount;
 import GUI.Accounts.UpdateAccount;
+
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.QuadCurve;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
@@ -48,52 +47,46 @@ public class InterfaceGUI extends Application {
         mainPane.setPadding(new Insets(20, 20, 20, 20));
         centerView.setPadding(new Insets(20, 20, 20, 20));
 
-        //BUTTONS
-        Button createAccount = new Button("Create Account");
-        Button viewAccount = new Button("View Account");
-        Button deleteAccount = new Button("Delete Account");
-        Button updateAccount = new Button("Update Account");
+//DROPDOWN
+        MenuItem create = new MenuItem("Create Account");
+        MenuItem view = new MenuItem("View Account");
+        MenuItem update = new MenuItem("Update Account");
+        MenuItem delete = new MenuItem("Delete Account");
+        MenuButton accountMenu = new MenuButton("Account", null, create, view, update, delete);
 
-        createAccount.setPrefWidth(145);
-        viewAccount.setPrefWidth(145);
-        deleteAccount.setPrefWidth(145);
-        updateAccount.setPrefWidth(145);
+        accountMenu.setTranslateX(200);
+        accountMenu.setPrefSize(104, 30);
 
-        createAccount.setTranslateX(200);
-        viewAccount.setTranslateX(-200);
-        deleteAccount.setTranslateX(200);
-        updateAccount.setTranslateX(-200);
+//HBOX FOR MENUBUTTON
+        HBox center = new HBox(5);
+        center.getChildren().addAll(accountMenu);
 
-//VBOX LEFT CENTER FOR PLACING BUTTONS
-        VBox leftCenter = new VBox(5);
-        leftCenter.getChildren().addAll(createAccount, deleteAccount);
-//VBOX RIGHT CENTER FOR PLACING BUTTONS
-        VBox rightCenter = new VBox(5);
-        rightCenter.getChildren().addAll(viewAccount, updateAccount);
-//CENTER FOR PLACING THE VBOXES THAT CONTAIN THE BUTTONS
-        centerView.setLeft(leftCenter);
-        centerView.setRight(rightCenter);
+//CENTER FOR PLACING THE MENUBUTTON
+        centerView.setCenter(center);
 
-//SET ON ACTION
-        createAccount.setOnAction((event) -> {
+//SET ON ACTION ACCOUNT
+        create.setOnAction((event) -> {
             Scene accountScene = new Scene(accountView.getView());
             stage.setScene(accountScene);
         });
 
-        viewAccount.setOnAction((event2) -> {
+        view.setOnAction((event2) -> {
             Scene accountViewScene = new Scene(accountViewView.getView());
             stage.setScene(accountViewScene);
         });
 
-        updateAccount.setOnAction((event3) -> {
+        update.setOnAction((event3) -> {
             Scene accountUpdateScene = new Scene(accountUpdateView.getView());
             stage.setScene(accountUpdateScene);
         });
 
-        deleteAccount.setOnAction((event4) -> {
+        delete.setOnAction((event4) -> {
             Scene accountDeleteScene = new Scene(accountDeleteView.getView());
             stage.setScene(accountDeleteScene);
         });
+
+        //SET ON ACTION COURSE
+        //SET ON ACTION OTHER
         //OTHER
         mainPane.setTop(Welcome);
         mainPane.setCenter(centerView);
@@ -106,3 +99,19 @@ public class InterfaceGUI extends Application {
     }
 
 }
+
+//BUTTONS in case of need
+//        Button createAccount = new Button("Create Account");
+//        Button viewAccount = new Button("View Account");
+//        Button deleteAccount = new Button("Delete Account");
+//        Button updateAccount = new Button("Update Account");
+// BUTTON ATTRIBUTES
+//        createAccount.setPrefWidth(145);
+//        viewAccount.setPrefWidth(145);
+//        deleteAccount.setPrefWidth(145);
+//        updateAccount.setPrefWidth(145);
+//
+//        createAccount.setTranslateX(200);
+//        viewAccount.setTranslateX(-200);
+//        deleteAccount.setTranslateX(200);
+//        updateAccount.setTranslateX(-200);
