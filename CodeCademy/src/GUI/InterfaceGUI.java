@@ -1,9 +1,11 @@
 package GUI;
 
 import GUI.Accounts.ViewAccount;
-import GUI.Accounts.CreateAccount;
+
+import GUI.Accounts.CreateCursist;
 import GUI.Accounts.DeleteAccount;
 import GUI.Accounts.UpdateAccount;
+import GUI.Accounts.ViewCursist;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -25,10 +27,10 @@ public class InterfaceGUI extends Application {
     @Override
     public void start(Stage stage) {
 //VIEWS
-        CreateAccount accountView = new CreateAccount();
-        ViewAccount accountViewView = new ViewAccount();
-        UpdateAccount accountUpdateView = new UpdateAccount();
-        DeleteAccount accountDeleteView = new DeleteAccount();
+        CreateCursist createCursistView = new CreateCursist();
+        ViewCursist accountViewView = new ViewCursist();
+     //   UpdateCursist accountUpdateView = new UpdateCursist();
+      //  DeleteCursist accountDeleteView = new DeleteCursist();
 
         //WELCOME SCENE
         BorderPane mainPane = new BorderPane();
@@ -48,10 +50,10 @@ public class InterfaceGUI extends Application {
         centerView.setPadding(new Insets(20, 20, 20, 20));
 
 //DROPDOWN ACCOUNT
-        MenuItem create = new MenuItem("Create Account");
-        MenuItem view = new MenuItem("View Account");
-        MenuItem update = new MenuItem("Update Account");
-        MenuItem delete = new MenuItem("Delete Account");
+        MenuItem create = new MenuItem("Create Cursist");
+        MenuItem view = new MenuItem("View Cursist");
+        MenuItem update = new MenuItem("Update Cursist");
+        MenuItem delete = new MenuItem("Delete Cursist");
         MenuButton accountMenu = new MenuButton("Account", null, create, view, update, delete);
 
         accountMenu.setTranslateX(200);
@@ -63,11 +65,8 @@ public class InterfaceGUI extends Application {
         MenuItem deleteC = new MenuItem("Delete Course");
         MenuButton courseMenu = new MenuButton("Course", null, createC, viewC, updateC, deleteC);
 
-        
         courseMenu.setTranslateX(200);
         courseMenu.setPrefSize(104, 30);
-
-        
 
 //HBOX FOR MENUBUTTON
         HBox center = new HBox(5);
@@ -78,24 +77,24 @@ public class InterfaceGUI extends Application {
 
 //SET ON ACTION ACCOUNT
         create.setOnAction((event) -> {
-            Scene accountScene = new Scene(accountView.getView());
+            Scene accountScene = new Scene(createCursistView.getView());
             stage.setScene(accountScene);
         });
 
-        view.setOnAction((event2) -> {
-            Scene accountViewScene = new Scene(accountViewView.getView());
-            stage.setScene(accountViewScene);
-        });
-
-        update.setOnAction((event3) -> {
-            Scene accountUpdateScene = new Scene(accountUpdateView.getView());
-            stage.setScene(accountUpdateScene);
-        });
-
-        delete.setOnAction((event4) -> {
-            Scene accountDeleteScene = new Scene(accountDeleteView.getView());
-            stage.setScene(accountDeleteScene);
-        });
+//        view.setOnAction((event2) -> {
+//            Scene accountViewScene = new Scene(accountViewView.getView());
+//            stage.setScene(accountViewScene);
+//        });
+//
+//        update.setOnAction((event3) -> {
+//            Scene accountUpdateScene = new Scene(accountUpdateView.getView());
+//            stage.setScene(accountUpdateScene);
+//        });
+//
+//        delete.setOnAction((event4) -> {
+//            Scene accountDeleteScene = new Scene(accountDeleteView.getView());
+//            stage.setScene(accountDeleteScene);
+//        });
 
         //SET ON ACTION COURSE
         //SET ON ACTION OTHER

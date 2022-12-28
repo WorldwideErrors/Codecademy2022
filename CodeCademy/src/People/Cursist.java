@@ -1,6 +1,7 @@
 package People;
 
 import Curriculum.Module;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -9,7 +10,7 @@ public class Cursist {
     private ArrayList<Module> modules;
     private String email;
     private String name;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     private char gender;
 
     private String street;
@@ -17,17 +18,16 @@ public class Cursist {
     private String city;
     private String country;
 
-    public Cursist(String email, String name, Date dateOfBirth, char gender, String address, String city, String country) {
+    public Cursist(String email, String name, LocalDate dateOfBirth, char gender, String street, String postalCode, String city, String country) {
         this.email = email;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
-        String[] parts = address.split(" ");
-        this.street = parts[0];
-        this.postalCode = formatPostalCode(parts[1]);
+        this.street = street;
+        this.postalCode = formatPostalCode(postalCode);
         this.city = city;
         this.country = country;
-        this.modules = new ArrayList<>();
+
     }
 
     //FOR TESTING EMAIL REMOVE
@@ -59,6 +59,17 @@ public class Cursist {
     public void addContent(Module module) {
         this.modules.add(module);
     }
-
+    
+       @Override
+    public String toString() {
+        return "Name: " + name + "\n"
+            + "Email: " + email + "\n"
+            + "Date of birth: " + dateOfBirth + "\n"
+            + "Gender: " + gender + "\n"
+            + "Street: " + street + "\n"
+            + "Postal code: " + postalCode + "\n"
+            + "City: " + city + "\n"
+            + "Country: " + country;
+    }
 
 }
