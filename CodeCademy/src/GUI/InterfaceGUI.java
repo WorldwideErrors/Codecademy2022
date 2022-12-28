@@ -2,7 +2,7 @@ package GUI;
 
 import GUI.Accounts.CreateCursist;
 import GUI.Accounts.DeleteCursist;
-import GUI.Accounts.UpdateAccount;
+import GUI.Accounts.UpdateCursist;
 import GUI.Accounts.ViewCursist;
 
 import javafx.application.Application;
@@ -25,10 +25,10 @@ public class InterfaceGUI extends Application {
     @Override
     public void start(Stage stage) {
 //VIEWS
-        CreateCursist createCursistView = new CreateCursist();
-        ViewCursist accountViewView = new ViewCursist();
-        //   UpdateCursist accountUpdateView = new UpdateCursist();
-        DeleteCursist accountDeleteView = new DeleteCursist();
+        CreateCursist cursistCreateView = new CreateCursist();
+        ViewCursist cursistViewView = new ViewCursist();
+        UpdateCursist cursistUpdateView = new UpdateCursist();
+        DeleteCursist cursistDeleteView = new DeleteCursist();
 
         //WELCOME SCENE
         BorderPane mainPane = new BorderPane();
@@ -75,22 +75,22 @@ public class InterfaceGUI extends Application {
 
 //SET ON ACTION ACCOUNT
         create.setOnAction((event) -> {
-            Scene accountScene = new Scene(createCursistView.getView());
+            Scene accountScene = new Scene(cursistCreateView.getView());
             stage.setScene(accountScene);
         });
 
-//        view.setOnAction((event2) -> {
-//            Scene accountViewScene = new Scene(accountViewView.getView());
-//            stage.setScene(accountViewScene);
-//        });
-//
-//        update.setOnAction((event3) -> {
-//            Scene accountUpdateScene = new Scene(accountUpdateView.getView());
-//            stage.setScene(accountUpdateScene);
-//        });
-//
+        view.setOnAction((event2) -> {
+            Scene accountViewScene = new Scene(cursistViewView.getView());
+            stage.setScene(accountViewScene);
+        });
+
+        update.setOnAction((event3) -> {
+            Scene accountUpdateScene = new Scene(cursistUpdateView.getView());
+            stage.setScene(accountUpdateScene);
+        });
+
         delete.setOnAction((event4) -> {
-            Scene accountDeleteScene = new Scene(accountDeleteView.getView());
+            Scene accountDeleteScene = new Scene(cursistDeleteView.getView());
             stage.setScene(accountDeleteScene);
         });
         //SET ON ACTION COURSE

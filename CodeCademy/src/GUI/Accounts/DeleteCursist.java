@@ -44,7 +44,7 @@ public class DeleteCursist {
 
         Text createEmp = new Text("Delete a cursist");
         createEmp.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
-        Text underMessage = new Text("Input email of the cursist you want to delete.");
+        Text underMessage = new Text("Input the email of the cursist you want to delete.");
         underMessage.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
 
         ///// EVERYTHING BELOW THIS IS WIP <--------------------------------------------

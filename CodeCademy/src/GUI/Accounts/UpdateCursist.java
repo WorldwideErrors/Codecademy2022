@@ -7,7 +7,7 @@ package GUI.Accounts;
 
 import DatabaseConnection.DatabaseConnection;
 import java.sql.*;
-
+import People.Employee;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -26,9 +26,9 @@ import javafx.scene.text.Text;
  *
  * @author Ordinary
  */
-public class ViewCursist {
+public class UpdateCursist {
 
-    public ViewCursist() {
+    public UpdateCursist() {
     }
 
     public Parent getView() {
@@ -44,9 +44,8 @@ public class ViewCursist {
 
         Text createEmp = new Text("Update an employee");
         createEmp.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
-        Text underMessage = new Text("Input the email of the cursist you want to delete.");
-        underMessage.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
 
+        ///// EVERYTHING BELOW THIS IS WIP <--------------------------------------------
         //INPUT FIELDS NAME
         HBox name = new HBox(10);
         name.setPadding(new Insets(20, 20, 0, 20));
@@ -70,7 +69,7 @@ public class ViewCursist {
         email.getChildren().addAll(labelEmail, inputEmail);
 
         //SAVE BUTTON
-        Button saveEmployee = new Button("View");
+        Button saveEmployee = new Button("Update");
 
         //BUTTON ON ACTION -> SAVES INPUTTED USER IN DATABASE
         saveEmployee.setOnAction((event2) -> {
@@ -79,7 +78,6 @@ public class ViewCursist {
 
                 //  Cursist temp = new Cursist(inputEmail.getText(), inputName.getText(), datePicker.getValue(), genderChar, inputStreet.getText(), inputPostal.getText(), inputCity.getText(), inputCountry.getText());
                 //   System.out.println(temp);
-                //SELECT * FROM Cursist where Email = 'inputEmail.getText()';
                 Statement stmt = conn.createStatement();
                 String SQL = "";
 
@@ -93,7 +91,7 @@ public class ViewCursist {
         //ADD ALL TO VBOX
         vertBox.getChildren()
                 .addAll(createEmp, name, email, saveEmployee);
-
+      
 
         return layout;
     }
