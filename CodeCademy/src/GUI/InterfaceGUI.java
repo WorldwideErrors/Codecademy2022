@@ -1,9 +1,7 @@
 package GUI;
 
-import GUI.Accounts.ViewAccount;
-
 import GUI.Accounts.CreateCursist;
-import GUI.Accounts.DeleteAccount;
+import GUI.Accounts.DeleteCursist;
 import GUI.Accounts.UpdateAccount;
 import GUI.Accounts.ViewCursist;
 
@@ -29,8 +27,8 @@ public class InterfaceGUI extends Application {
 //VIEWS
         CreateCursist createCursistView = new CreateCursist();
         ViewCursist accountViewView = new ViewCursist();
-     //   UpdateCursist accountUpdateView = new UpdateCursist();
-      //  DeleteCursist accountDeleteView = new DeleteCursist();
+        //   UpdateCursist accountUpdateView = new UpdateCursist();
+        DeleteCursist accountDeleteView = new DeleteCursist();
 
         //WELCOME SCENE
         BorderPane mainPane = new BorderPane();
@@ -91,11 +89,10 @@ public class InterfaceGUI extends Application {
 //            stage.setScene(accountUpdateScene);
 //        });
 //
-//        delete.setOnAction((event4) -> {
-//            Scene accountDeleteScene = new Scene(accountDeleteView.getView());
-//            stage.setScene(accountDeleteScene);
-//        });
-
+        delete.setOnAction((event4) -> {
+            Scene accountDeleteScene = new Scene(accountDeleteView.getView());
+            stage.setScene(accountDeleteScene);
+        });
         //SET ON ACTION COURSE
         //SET ON ACTION OTHER
         //OTHER

@@ -8,10 +8,6 @@ package GUI.Accounts;
 import java.sql.*;
 import DatabaseConnection.DatabaseConnection;
 import People.Cursist;
-import People.Employee;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -41,13 +37,11 @@ public class CreateCursist {
     public Parent getView() {
         BorderPane layout = new BorderPane();
         layout.setPrefSize(800, 500);
-        layout.setPadding(new Insets(20, 20, 20, 20));
+        layout.setPadding(new Insets(50, 20, 20, 20));
 
         VBox vertBox = new VBox(5);
         vertBox.setAlignment(Pos.TOP_CENTER);
 
-        layout.setRight(null);
-        layout.setLeft(null);
         layout.setCenter(vertBox);
 
         Text createCur = new Text("Create a cursist");

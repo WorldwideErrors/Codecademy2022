@@ -3,11 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Janko/Documents/NetBeansProjects/CodeCademy/src/GUI/CreateAccount.java</file>
             <file>file:/C:/Users/Janko/Documents/NetBeansProjects/CodeCademy/src/DatabaseConnection/DatabaseConnection.java</file>
+            <file>file:/C:/Users/Janko/Documents/NetBeansProjects/CodeCademy/src/GUI/Accounts/CreateCursist.java</file>
             <file>file:/C:/Users/Janko/Documents/NetBeansProjects/CodeCademy/src/People/Employee.java</file>
-            <file>file:/C:/Users/Janko/Documents/NetBeansProjects/CodeCademy/src/GUI/ViewAccount.java</file>
+            <file>file:/C:/Users/Janko/Documents/NetBeansProjects/CodeCademy/src/GUI/Accounts/ViewCursist.java</file>
+            <file>file:/C:/Users/Janko/Documents/NetBeansProjects/CodeCademy/src/Curriculum/Status.java</file>
+            <file>file:/C:/Users/Janko/Documents/NetBeansProjects/CodeCademy/src/GUI/Accounts/ViewAccount.java</file>
+            <file>file:/C:/Users/Janko/Documents/NetBeansProjects/CodeCademy/src/GUI/Accounts/UpdateAccount.java</file>
+            <file>file:/C:/Users/Janko/Documents/NetBeansProjects/CodeCademy/src/GUI/Accounts/DeleteAccount.java</file>
             <file>file:/C:/Users/Janko/Documents/NetBeansProjects/CodeCademy/src/GUI/InterfaceGUI.java</file>
+            <file>file:/C:/Users/Janko/Documents/NetBeansProjects/CodeCademy/src/People/Cursist.java</file>
+            <file>file:/C:/Users/Janko/Documents/NetBeansProjects/CodeCademy/src/Curriculum/Level.java</file>
             <file>file:/C:/Users/Janko/Documents/NetBeansProjects/CodeCademy/src/Curriculum/Main.java</file>
         </group>
     </open-files>
