@@ -34,6 +34,7 @@ public class UpdateCursist {
     public Parent getView() {
         BorderPane layout = new BorderPane();
         layout.setPrefSize(800, 500);
+        layout.setPadding(new Insets(50, 20, 20, 20));
 
         VBox vertBox = new VBox(5);
         vertBox.setAlignment(Pos.TOP_CENTER);
@@ -91,7 +92,6 @@ public class UpdateCursist {
         //ADD ALL TO VBOX
         vertBox.getChildren()
                 .addAll(createEmp, name, email, saveEmployee);
-      
 
         return layout;
     }

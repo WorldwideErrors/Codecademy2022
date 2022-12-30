@@ -78,7 +78,7 @@ public class DeleteCursist {
 
         //ADD ALL TO VBOX
         vertBox.getChildren()
-                .addAll(createEmp, email, saveEmployee);
+                .addAll(createEmp, underMessage, email, saveEmployee);
 
         return layout;
     }
