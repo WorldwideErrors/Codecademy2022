@@ -52,10 +52,10 @@ public class InterfaceGUI extends Application {
         MenuItem view = new MenuItem("View Cursist");
         MenuItem update = new MenuItem("Update Cursist");
         MenuItem delete = new MenuItem("Delete Cursist");
-        MenuButton accountMenu = new MenuButton("Account", null, create, view, update, delete);
+        MenuButton cursistMenu = new MenuButton("Cursist", null, create, view, update, delete);
 
-        accountMenu.setTranslateX(200);
-        accountMenu.setPrefSize(104, 30);
+        cursistMenu.setTranslateX(150);
+        cursistMenu.setPrefSize(104, 30);
 //DROPDOWN COURSE
         MenuItem createC = new MenuItem("Create Course");
         MenuItem viewC = new MenuItem("View Course");
@@ -63,17 +63,34 @@ public class InterfaceGUI extends Application {
         MenuItem deleteC = new MenuItem("Delete Course");
         MenuButton courseMenu = new MenuButton("Course", null, createC, viewC, updateC, deleteC);
 
-        courseMenu.setTranslateX(200);
+        courseMenu.setTranslateX(150);
         courseMenu.setPrefSize(104, 30);
+//DROPDOWN REGISTRATIONS
+        MenuItem createR = new MenuItem("Create Registration");
+        MenuItem viewR = new MenuItem("View Registration");
+        MenuItem updateR = new MenuItem("Update Registration");
+        MenuItem deleteR = new MenuItem("Delete Registration");
+        MenuButton registrationMenu = new MenuButton("Registration", null, createR, viewR, updateR, deleteR);
 
+        registrationMenu.setTranslateX(150);
+        registrationMenu.setPrefSize(104, 30);
+//DROPDOWN CERTIFICATES
+        MenuItem createCR = new MenuItem("Create Certificate");
+        MenuItem viewCR = new MenuItem("View Certificate");
+        MenuItem updateCR = new MenuItem("Update Certificate");
+        MenuItem deleteCR = new MenuItem("Delete Certificate");
+        MenuButton certificateMenu = new MenuButton("Registration", null, createCR, viewCR, updateCR, deleteCR);
+
+        certificateMenu.setTranslateX(150);
+        certificateMenu.setPrefSize(104, 30);
 //HBOX FOR MENUBUTTON
         HBox center = new HBox(5);
-        center.getChildren().addAll(accountMenu, courseMenu);
+        center.getChildren().addAll(cursistMenu, courseMenu, registrationMenu, certificateMenu);
 
 //CENTER FOR PLACING THE MENUBUTTON
         centerView.setCenter(center);
 
-//SET ON ACTION ACCOUNT
+//SET ON ACTION CURSIST
         create.setOnAction((event) -> {
             Scene accountScene = new Scene(cursistCreateView.getView());
             stage.setScene(accountScene);
@@ -94,10 +111,58 @@ public class InterfaceGUI extends Application {
             stage.setScene(accountDeleteScene);
         });
         //SET ON ACTION COURSE
-        //SET ON ACTION OTHER
+        createC.setOnAction((eventC) -> {
+
+        });
+
+        viewC.setOnAction((eventC2) -> {
+
+        });
+
+        updateC.setOnAction((eventC3) -> {
+
+        });
+
+        deleteC.setOnAction((eventC4) -> {
+
+        });
+        //SET ON ACTION REGISTRATION   
+        createR.setOnAction((eventR) -> {
+
+        });
+
+        viewR.setOnAction((eventR2) -> {
+
+        });
+
+        updateR.setOnAction((eventR3) -> {
+
+        });
+
+        deleteR.setOnAction((eventR4) -> {
+
+        });
+        //SET ON ACTION CERTIFICATE
+        createCR.setOnAction((eventCR) -> {
+
+        });
+
+        viewCR.setOnAction((eventCR2) -> {
+
+        });
+
+        updateCR.setOnAction((eventCR3) -> {
+
+        });
+
+        deleteCR.setOnAction((eventCR4) -> {
+
+        });
         //OTHER
         mainPane.setTop(Welcome);
         mainPane.setCenter(centerView);
+
+        //SCENE
         Scene scene = new Scene(mainPane, 800, 500);
 
         //STAGE 
@@ -108,18 +173,4 @@ public class InterfaceGUI extends Application {
 
 }
 
-//BUTTONS in case of need
-//        Button createAccount = new Button("Create Account");
-//        Button viewAccount = new Button("View Account");
-//        Button deleteAccount = new Button("Delete Account");
-//        Button updateAccount = new Button("Update Account");
-// BUTTON ATTRIBUTES
-//        createAccount.setPrefWidth(145);
-//        viewAccount.setPrefWidth(145);
-//        deleteAccount.setPrefWidth(145);
-//        updateAccount.setPrefWidth(145);
-//
-//        createAccount.setTranslateX(200);
-//        viewAccount.setTranslateX(-200);
-//        deleteAccount.setTranslateX(200);
-//        updateAccount.setTranslateX(-200);
+

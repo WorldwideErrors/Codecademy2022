@@ -47,15 +47,6 @@ public class UpdateCursist {
         createEmp.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
 
         ///// EVERYTHING BELOW THIS IS WIP <--------------------------------------------
-        //INPUT FIELDS NAME
-        HBox name = new HBox(10);
-        name.setPadding(new Insets(20, 20, 0, 20));
-        name.setAlignment(Pos.CENTER);
-
-        Label labelName = new Label("Name: ");
-        labelName.setFont(Font.font("verdana", FontWeight.BOLD, 14));
-        TextField inputName = new TextField();
-
         //INPUT FIELDS EMAIL
         HBox email = new HBox(10);
         email.setPadding(new Insets(0, 20, 20, 20));
@@ -66,7 +57,6 @@ public class UpdateCursist {
         TextField inputEmail = new TextField();
 
         //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
-        name.getChildren().addAll(labelName, inputName);
         email.getChildren().addAll(labelEmail, inputEmail);
 
         //SAVE BUTTON
@@ -91,7 +81,7 @@ public class UpdateCursist {
 
         //ADD ALL TO VBOX
         vertBox.getChildren()
-                .addAll(createEmp, name, email, saveEmployee);
+                .addAll(createEmp, email, saveEmployee);
 
         return layout;
     }
