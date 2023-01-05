@@ -7,10 +7,10 @@ public class Employee {
 
     public Employee(String name, String email) {
         this.name = name;
-        if (formatEmail(email) != null) {
-            this.name = email;
+        if (formatEmail(email) == true) {
+            this.email = email;
         } else {
-            throw new IllegalArgumentException(this.name + " has a faulty email.");
+            throw new IllegalArgumentException(this.name + " has a incorrect email.");
         }
     }
 
@@ -22,7 +22,7 @@ public class Employee {
         return email;
     }
 
-    public String formatEmail(String email) {
+    public Boolean formatEmail(String email) {
         String[] parts = email.split("[@.]");
 
         try {
@@ -33,12 +33,12 @@ public class Employee {
 
             for (int j = 0; j < parts.length; j++) {
                 if (parts[j].length() < 1) {
-                    throw new IllegalArgumentException();
+                    return false;
                 }
             }
-            return email;
+            return true;
         } catch (IllegalArgumentException e) {
-            return null;
+            return false;
         }
 
     }
@@ -48,3 +48,4 @@ public class Employee {
         return this.name + ": " + this.email;
     }
 }
+

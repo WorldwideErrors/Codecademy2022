@@ -24,9 +24,28 @@ public class Webcast extends Content {
         this.duration = duration;
         this.url = url;
     }
-    
-    public String formatURL(String url) {
-        return "";
+
+    public Boolean formatURL(String url) {
+        // Split URL
+        String[] parts = url.split("\\.");
+
+        // check if URL has 3 parts
+        if (parts.length != 3) {
+            return false;
+        }
+
+        // check if starts with http / https
+        if (!parts[0].equals("http://") && !parts[0].equals("https://")) {
+            return false;
+        }
+        // check if minimum of 1 letter
+        for (int j = 0; j < parts.length; j++) {
+            if (parts[j].length() < 1) {
+                return false;
+            }
+        }
+        return true;
+
     }
 
 }

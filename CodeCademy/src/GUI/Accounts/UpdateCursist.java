@@ -46,7 +46,7 @@ public class UpdateCursist {
         Text createEmp = new Text("Update an employee");
         createEmp.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
 
-        ///// EVERYTHING BELOW THIS IS WIP <--------------------------------------------
+       
         //INPUT FIELDS EMAIL
         HBox email = new HBox(10);
         email.setPadding(new Insets(0, 20, 20, 20));

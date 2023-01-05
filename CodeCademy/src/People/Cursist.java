@@ -24,16 +24,16 @@ public class Cursist {
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.street = street;
-        this.postalCode = formatPostalCode(postalCode);
+
+        String formatted = formatPostalCode(postalCode);
+        if (formatted.isEmpty()) {
+            throw new IllegalArgumentException("Invalid postal code");
+        }
+        this.postalCode = formatted;
+
         this.city = city;
         this.country = country;
 
-    }
-
-    //FOR TESTING EMAIL REMOVE
-    public Cursist(String email) {
-        this.email = formatEmail(email);
-        this.modules = new ArrayList<>();
     }
 
     public String formatEmail(String email) {
@@ -53,23 +53,46 @@ public class Cursist {
     }
 
     public String formatPostalCode(String postalCode) {
-        return "";
+        // trim postal code
+        postalCode = postalCode.trim();
+        postalCode = postalCode.toUpperCase();
+        // check if postal code 6 letters
+        if (postalCode.length() != 6) {
+            return "";
+        }
+
+        // check if first != 0
+        if (postalCode.charAt(0) == '0') {
+            return "";
+        }
+
+        // check if postalcode contains numbers and letters only
+        for (int i = 1; i < postalCode.length(); i++) {
+            char c = postalCode.charAt(i);
+            if (!Character.isDigit(c) && !Character.isUpperCase(c)) {
+                return "";
+            }
+        }
+
+        // final format
+        return postalCode.substring(0, 4) + " " + postalCode.substring(4);
+
     }
 
     public void addContent(Module module) {
         this.modules.add(module);
     }
-    
-       @Override
+
+    @Override
     public String toString() {
         return "Name: " + name + "\n"
-            + "Email: " + email + "\n"
-            + "Date of birth: " + dateOfBirth + "\n"
-            + "Gender: " + gender + "\n"
-            + "Street: " + street + "\n"
-            + "Postal code: " + postalCode + "\n"
-            + "City: " + city + "\n"
-            + "Country: " + country;
+                + "Email: " + email + "\n"
+                + "Date of birth: " + dateOfBirth + "\n"
+                + "Gender: " + gender + "\n"
+                + "Street: " + street + "\n"
+                + "Postal code: " + postalCode + "\n"
+                + "City: " + city + "\n"
+                + "Country: " + country;
     }
 
 }
