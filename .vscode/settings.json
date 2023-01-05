@@ -1,0 +1,14 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "c:\\Users\\jeffr\\Desktop\\javafx-sdk-17.0.1\\lib\\javafx.base.jar",
+        "c:\\Users\\jeffr\\Desktop\\javafx-sdk-17.0.1\\lib\\javafx.controls.jar",
+        "c:\\Users\\jeffr\\Desktop\\javafx-sdk-17.0.1\\lib\\javafx.fxml.jar",
+        "c:\\Users\\jeffr\\Desktop\\javafx-sdk-17.0.1\\lib\\javafx.graphics.jar",
+        "c:\\Users\\jeffr\\Desktop\\javafx-sdk-17.0.1\\lib\\javafx.media.jar",
+        "c:\\Users\\jeffr\\Desktop\\javafx-sdk-17.0.1\\lib\\javafx.swing.jar",
+        "c:\\Users\\jeffr\\Desktop\\javafx-sdk-17.0.1\\lib\\javafx.web.jar",
+        "c:\\Users\\jeffr\\Desktop\\javafx-sdk-17.0.1\\lib\\javafx-swt.jar",
+        "c:\\Users\\jeffr\\Desktop\\sqljdbc_11.2\\enu\\mssql-jdbc-11.2.1.jre11.jar"
+    ]
+}
