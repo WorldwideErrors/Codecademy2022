@@ -13,6 +13,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -57,11 +58,28 @@ public class ViewCursist {
         email.setAlignment(Pos.CENTER);
 
         Label labelEmail = new Label("Email: ");
-        labelEmail.setFont(Font.font("verdana", FontWeight.BOLD, 14));
-        TextField inputEmail = new TextField();
+        ComboBox emailMenu = new ComboBox();
+        emailMenu.setPromptText("Email");
+
+        emailMenu.setPrefSize(150, 30);
+
+//SQL CODE FOR MENU
+        try {
+            String query = "SELECT Email FROM Cursist";
+            Connection conn = DatabaseConnection.getConnection();
+            Statement stmt = conn.createStatement();
+
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                String value = rs.getString("Email");
+
+                emailMenu.getItems().add(value);
+            }
+        } catch (SQLException ex) {
+        }
 
         //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
-        email.getChildren().addAll(labelEmail, inputEmail);
+        email.getChildren().addAll(labelEmail, emailMenu);
 
         //SAVE BUTTON
         Button viewEmployee = new Button("View");
@@ -75,7 +93,7 @@ public class ViewCursist {
                 //   System.out.println(temp);
                 //SELECT * FROM Cursist where Email = 'inputEmail.getText()';
                 Statement stmt = conn.createStatement();
-                String SQL = "SELECT * FROM CURSIST WHERE Email = '" + inputEmail.getText() + "'";
+                String SQL = "SELECT * FROM CURSIST WHERE Email = '" + emailMenu.getValue() + "'";
                 ResultSet rs = stmt.executeQuery(SQL);
 
                 //ATTRIBUTES AND VALUES

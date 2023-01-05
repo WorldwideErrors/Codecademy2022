@@ -4,6 +4,9 @@ import GUI.Accounts.CreateCursist;
 import GUI.Accounts.DeleteCursist;
 import GUI.Accounts.UpdateCursist;
 import GUI.Accounts.ViewCursist;
+import GUI.Courses.CreateCourse;
+import GUI.Courses.ViewCourses;
+import GUI.Registrations.AddRegistration;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -30,6 +33,9 @@ public class InterfaceGUI extends Application {
         UpdateCursist cursistUpdateView = new UpdateCursist();
         DeleteCursist cursistDeleteView = new DeleteCursist();
 
+        CreateCourse courseCreateView = new CreateCourse();
+        ViewCourses courseViewView = new ViewCourses();
+        AddRegistration addRegistrationView = new AddRegistration();
         //WELCOME SCENE
         BorderPane mainPane = new BorderPane();
 
@@ -112,10 +118,13 @@ public class InterfaceGUI extends Application {
         });
         //SET ON ACTION COURSE
         createC.setOnAction((eventC) -> {
-
+            Scene courseCreateScene = new Scene(courseCreateView.getView());
+            stage.setScene(courseCreateScene);
         });
 
         viewC.setOnAction((eventC2) -> {
+            Scene courseViewScene = new Scene(courseViewView.getView());
+            stage.setScene(courseViewScene);
 
         });
 
@@ -128,7 +137,8 @@ public class InterfaceGUI extends Application {
         });
         //SET ON ACTION REGISTRATION   
         createR.setOnAction((eventR) -> {
-
+            Scene addRegistrationScene = new Scene(addRegistrationView.getView());
+            stage.setScene(addRegistrationScene);
         });
 
         viewR.setOnAction((eventR2) -> {
@@ -172,5 +182,3 @@ public class InterfaceGUI extends Application {
     }
 
 }
-
-

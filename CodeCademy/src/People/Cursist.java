@@ -1,13 +1,13 @@
 package People;
 
-import Curriculum.Module;
+import Papers.Registration;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
 public class Cursist {
 
-    private ArrayList<Module> modules;
+    private ArrayList<Registration> registrations;
     private String email;
     private String name;
     private LocalDate dateOfBirth;
@@ -19,7 +19,11 @@ public class Cursist {
     private String country;
 
     public Cursist(String email, String name, LocalDate dateOfBirth, char gender, String street, String postalCode, String city, String country) {
-        this.email = email;
+        if (formatEmail(email) == true) {
+            this.email = email;
+        } else {
+            throw new IllegalArgumentException(this.name + " has an incorrect email.");
+        }
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
@@ -34,22 +38,29 @@ public class Cursist {
         this.city = city;
         this.country = country;
 
+        this.registrations = new ArrayList<>();
+
     }
 
-    public String formatEmail(String email) {
+    public Boolean formatEmail(String email) {
         String[] parts = email.split("[@.]");
 
-        for (String i : parts) {
-            System.out.println(i);
-        }
-        for (int j = 0; j < parts.length; j++) {
-            if (parts[j].length() < 1) {
-                throw new IllegalArgumentException(this.name + " has an incorrect email.");
+        try {
+
+            if (!email.contains("@") || !email.contains(".")) {
+                throw new IllegalArgumentException();
             }
+
+            for (int j = 0; j < parts.length; j++) {
+                if (parts[j].length() < 1) {
+                    return false;
+                }
+            }
+            return true;
+        } catch (IllegalArgumentException e) {
+            return false;
         }
 
-        System.out.println(email);
-        return email;
     }
 
     public String formatPostalCode(String postalCode) {
@@ -79,8 +90,8 @@ public class Cursist {
 
     }
 
-    public void addContent(Module module) {
-        this.modules.add(module);
+    public void addRegistration(Registration registration) {
+        this.registrations.add(registration);
     }
 
     @Override
