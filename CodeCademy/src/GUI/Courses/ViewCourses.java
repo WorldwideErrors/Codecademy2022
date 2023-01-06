@@ -99,9 +99,7 @@ public class ViewCourses {
 
                     Label labelName = new Label("Name: ");
                     labelName.setFont(Font.font("verdana", FontWeight.BOLD, 14));
-                    // Label infoName = new Label(nameStr);
-
-                    // Label infoCity = new Label(cityStr);
+                  
                     //COURSENAME
                     HBox coursename = new HBox(10);
                     coursename.setPadding(inputInset);

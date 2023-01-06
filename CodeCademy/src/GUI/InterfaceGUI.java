@@ -6,7 +6,9 @@ import GUI.Accounts.UpdateCursist;
 import GUI.Accounts.ViewCursist;
 import GUI.Courses.CreateCourse;
 import GUI.Courses.ViewCourses;
-import GUI.Registrations.AddRegistration;
+import GUI.Registrations.CreateRegistration;
+import GUI.Registrations.DeleteRegistration;
+import GUI.Registrations.ViewRegistration;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -35,7 +37,10 @@ public class InterfaceGUI extends Application {
 
         CreateCourse courseCreateView = new CreateCourse();
         ViewCourses courseViewView = new ViewCourses();
-        AddRegistration addRegistrationView = new AddRegistration();
+
+        CreateRegistration createRegistrationView = new CreateRegistration();
+        DeleteRegistration deleteRegistrationView = new DeleteRegistration();
+        ViewRegistration viewRegistrationView = new ViewRegistration();
         //WELCOME SCENE
         BorderPane mainPane = new BorderPane();
 
@@ -137,12 +142,13 @@ public class InterfaceGUI extends Application {
         });
         //SET ON ACTION REGISTRATION   
         createR.setOnAction((eventR) -> {
-            Scene addRegistrationScene = new Scene(addRegistrationView.getView());
-            stage.setScene(addRegistrationScene);
+            Scene createRegistrationScene = new Scene(createRegistrationView.getView());
+            stage.setScene(createRegistrationScene);
         });
 
         viewR.setOnAction((eventR2) -> {
-
+            Scene viewRegistrationScene = new Scene(viewRegistrationView.getView());
+            stage.setScene(viewRegistrationScene);
         });
 
         updateR.setOnAction((eventR3) -> {
@@ -150,7 +156,8 @@ public class InterfaceGUI extends Application {
         });
 
         deleteR.setOnAction((eventR4) -> {
-
+            Scene deleteRegistrationScene = new Scene(deleteRegistrationView.getView());
+            stage.setScene(deleteRegistrationScene);
         });
         //SET ON ACTION CERTIFICATE
         createCR.setOnAction((eventCR) -> {

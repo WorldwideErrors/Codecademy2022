@@ -5,12 +5,15 @@
  */
 package GUI.Registrations;
 
+import Curriculum.Course;
 import DatabaseConnection.DatabaseConnection;
+import Papers.Registration;
 import People.Cursist;
-import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -18,11 +21,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -31,7 +29,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class DeleteRegistration {
+public class CreateRegistration {
 
     public Parent getView() {
         BorderPane layout = new BorderPane();
@@ -43,7 +41,7 @@ public class DeleteRegistration {
 
         layout.setCenter(vertBox);
 
-        Text createCur = new Text("Delete a registration");
+        Text createCur = new Text("Create a registration");
         createCur.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
 //ALL INPUT FIELDS ARE BELOW HERE
         Insets inputInset = new Insets(0, 20, 0, 20);
@@ -90,43 +88,53 @@ public class DeleteRegistration {
         coursesMenu.setTranslateX(10);
         coursesMenu.setPrefSize(150, 30);
 //SQL CODE FOR MENU
+        try {
+            String query = "SELECT CourseName FROM Course";
+            Connection conn = DatabaseConnection.getConnection();
+            Statement stmt = conn.createStatement();
 
-        emailMenu.setOnAction((event) -> {
-            String selectedItem = emailMenu.getSelectionModel().getSelectedItem().toString();
-            coursesMenu.getItems().clear();
-            try {
-                String query = "SELECT CourseName from Registration WHERE CursistEmail = '" + selectedItem + "'";
-                Connection conn = DatabaseConnection.getConnection();
-                Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                String value = rs.getString("CourseName");
 
-                ResultSet rs = stmt.executeQuery(query);
-                while (rs.next()) {
-                    String value = rs.getString("CourseName");
-
-                    coursesMenu.getItems().add(value);
-                }
-            } catch (SQLException ex) {
+                coursesMenu.getItems().add(value);
             }
+        } catch (SQLException ex) {
+        }
+//INPUT FIELDS DATE
 
-        });
+        HBox date = new HBox(10);
+        date.setPadding(inputInset);
+        date.setAlignment(Pos.CENTER);
+
+        date.setTranslateX(-12.5);
+        Label labelDate = new Label("Registration date:");
+        labelDate.setFont(Font.font("verdana", FontWeight.BOLD, 14));
+        labelDate.setTranslateX(-28);
+        DatePicker datePicker = new DatePicker();
+        datePicker.setTranslateX(-10);
 
         //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
         email.getChildren().addAll(labelEmail, emailMenu);
         course.getChildren().addAll(labelCourse, coursesMenu);
+        date.getChildren().addAll(labelDate, datePicker);
 
-//DELETE BUTTON
-        Button addRegistration = new Button("Delete");
+//SAVE BUTTON
+        Button addRegistration = new Button("Create");
 
         addRegistration.setOnAction((event2) -> {
             try {
-
                 Connection conn = DatabaseConnection.getConnection();
+                Date currentDate = new Date();
 
                 Statement stmt = conn.createStatement();
-                String SQL = "DELETE FROM Registration WHERE cursistEmail = '" + emailMenu.getValue() + "' AND CourseName = '" + coursesMenu.getValue() + "'";
-                coursesMenu.getItems().clear();
-                emailMenu.getItems().clear();
+                String SQL = "INSERT INTO Registration VALUES('" + datePicker.getValue() + "', '" + emailMenu.getValue() + "', '" + coursesMenu.getValue() + "', NULL)";
                 stmt.executeUpdate(SQL);
+
+                //CLEARING VALUES
+                datePicker.setValue(null);
+                emailMenu.setValue(null);
+                coursesMenu.setValue(null);
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
@@ -135,7 +143,7 @@ public class DeleteRegistration {
 
         //ADD ALL TO VBOX
         vertBox.getChildren()
-                .addAll(createCur, email, course, addRegistration);
+                .addAll(createCur, email, course, date, addRegistration);
 
         return layout;
     }
