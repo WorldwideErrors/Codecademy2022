@@ -6,8 +6,10 @@
 package GUI.Accounts;
 
 import DatabaseConnection.DatabaseConnection;
+import People.Cursist;
 import java.sql.*;
 import People.Employee;
+import java.time.LocalDate;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -45,19 +47,29 @@ public class UpdateCursist {
 
         Text createEmp = new Text("Update an employee");
         createEmp.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
+        Text underMessage = new Text("Input the email of the cursist you want to update.");
+        underMessage.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
 
-       
         //INPUT FIELDS EMAIL
         HBox email = new HBox(10);
-        email.setPadding(new Insets(0, 20, 20, 20));
+        email.setPadding(new Insets(0, 20, 0, 20));
         email.setAlignment(Pos.CENTER);
 
         Label labelEmail = new Label("Email: ");
         labelEmail.setFont(Font.font("verdana", FontWeight.BOLD, 14));
         TextField inputEmail = new TextField();
 
+        //NEW EMAIL
+        HBox newEmail = new HBox(10);
+        newEmail.setPadding(new Insets(0, 39, 0, 0));
+        newEmail.setAlignment(Pos.CENTER);
+
+        Label labelNewEmail = new Label("New email: ");
+        labelNewEmail.setFont(Font.font("verdana", FontWeight.BOLD, 14));
+        TextField inputNewEmail = new TextField();
         //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
         email.getChildren().addAll(labelEmail, inputEmail);
+        newEmail.getChildren().addAll(labelNewEmail, inputNewEmail);
 
         //SAVE BUTTON
         Button saveEmployee = new Button("Update");
@@ -67,11 +79,13 @@ public class UpdateCursist {
             try {
                 Connection conn = DatabaseConnection.getConnection();
 
-                //  Cursist temp = new Cursist(inputEmail.getText(), inputName.getText(), datePicker.getValue(), genderChar, inputStreet.getText(), inputPostal.getText(), inputCity.getText(), inputCountry.getText());
-                //   System.out.println(temp);
-                Statement stmt = conn.createStatement();
-                String SQL = "";
+                Cursist temp = new Cursist(inputNewEmail.getText());
 
+                Statement stmt = conn.createStatement();
+                String SQL = "UPDATE Cursist SET Email = '" + inputNewEmail.getText() + "' WHERE Email = '" + inputEmail.getText() + "' ";
+
+                inputEmail.clear();
+                inputNewEmail.clear();
                 stmt.executeUpdate(SQL);
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -81,7 +95,7 @@ public class UpdateCursist {
 
         //ADD ALL TO VBOX
         vertBox.getChildren()
-                .addAll(createEmp, email, saveEmployee);
+                .addAll(createEmp, underMessage, email, newEmail, saveEmployee);
 
         return layout;
     }

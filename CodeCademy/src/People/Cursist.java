@@ -42,6 +42,15 @@ public class Cursist {
 
     }
 
+    //Temp Cursist
+    public Cursist(String email) {
+        if (formatEmail(email) == true) {
+            this.email = email;
+        } else {
+            throw new IllegalArgumentException(this.name + " has an incorrect email.");
+        }
+    }
+
     public Boolean formatEmail(String email) {
         String[] parts = email.split("[@.]");
 
