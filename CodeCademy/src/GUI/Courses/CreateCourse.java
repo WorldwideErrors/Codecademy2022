@@ -50,7 +50,7 @@ public Parent getView() {
     labelName.setFont(Font.font("verdana", FontWeight.BOLD, 14));
     TextField inputCourseName = new TextField();
 
-    //INPUT FIELDS EMAIL
+    //INPUT FIELDS INTRODUCTIONTEXT
     HBox courseInfo = new HBox(10);
     courseInfo.setPadding(inputInset);
     courseInfo.setAlignment(Pos.CENTER);
@@ -59,81 +59,13 @@ public Parent getView() {
     labelInfo.setFont(Font.font("verdana", FontWeight.BOLD, 14));
     TextArea inputInfo = new TextArea();
 
-    //INPUT FIELDS DOB
-    HBox DOB = new HBox(10);
-    DOB.setPadding(inputInset);
-    DOB.setAlignment(Pos.CENTER);
-
-    DOB.setTranslateX(-12.5);
-    Label labelDOB = new Label("Date of birth:");
-    labelDOB.setFont(Font.font("verdana", FontWeight.BOLD, 14));
-    DatePicker datePicker = new DatePicker();
-
-    //INPUT GENDER
-    HBox gender = new HBox(10);
-    gender.setPadding(inputInset);
-    gender.setAlignment(Pos.CENTER);
-
-    ToggleGroup genderToggle = new ToggleGroup();
-
-    RadioButton maleGender = new RadioButton("Male");
-    RadioButton femaleGender = new RadioButton("Female");
-
-    maleGender.setToggleGroup(genderToggle);
-    femaleGender.setToggleGroup(genderToggle);
-
-    Label labelGender = new Label("Gender:");
-    labelGender.setFont(Font.font("verdana", FontWeight.BOLD, 14));
-
-    //INPUT STREET, POSTAL, CITY, COUNTRY
-    //STREET
-    HBox street = new HBox(10);
-    street.setPadding(inputInset);
-    street.setAlignment(Pos.CENTER);
-    Label labelStreet = new Label("Street:");
-    labelStreet.setFont(Font.font("verdana", FontWeight.BOLD, 14));
-
-    TextField inputStreet = new TextField();
-
-    //POSTAL
-    HBox postal = new HBox(10);
-    postal.setPadding(inputInset);
-    postal.setAlignment(Pos.CENTER);
-
-    Label labelPostal = new Label("Postal Code:");
-    labelPostal.setFont(Font.font("verdana", FontWeight.BOLD, 14));
-
-    TextField inputPostal = new TextField();
-
-    //CITY
-    HBox city = new HBox(10);
-    city.setPadding(inputInset);
-    city.setAlignment(Pos.CENTER);
-
-    Label labelCity = new Label("City:");
-    labelCity.setFont(Font.font("verdana", FontWeight.BOLD, 14));
-
-    TextField inputCity = new TextField();
-
-    //COUNTRY
-    HBox country = new HBox(10);
-    country.setPadding(inputInset);
-    country.setAlignment(Pos.CENTER);
-
-    Label labelCountry = new Label("Country:");
-    labelCountry.setFont(Font.font("verdana", FontWeight.BOLD, 14));
+    
 
     TextField inputCountry = new TextField();
 
     //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
     name.getChildren().addAll(labelName, inputCourseName);
     courseInfo.getChildren().addAll(labelInfo, inputInfo);
-    DOB.getChildren().addAll(labelDOB, datePicker);
-    gender.getChildren().addAll(labelGender, maleGender, femaleGender);
-    street.getChildren().addAll(labelStreet, inputStreet);
-    postal.getChildren().addAll(labelPostal, inputPostal);
-    city.getChildren().addAll(labelCity, inputCity);
-    country.getChildren().addAll(labelCountry, inputCountry);
 
 //SAVE BUTTON
     Button saveCursist = new Button("Save");
@@ -144,18 +76,18 @@ public Parent getView() {
 
             char genderChar = 0;
 
-            if (femaleGender.isSelected()) {
-                genderChar = 'f';
-            } else {
-                genderChar = 'm';
-            }
+            // if (femaleGender.isSelected()) {
+            //     genderChar = 'f';
+            // } else {
+            //     genderChar = 'm';
+            // }
 
-            Cursist temp = new Cursist(inputInfo.getText(), inputCourseName.getText(), datePicker.getValue(), genderChar, inputStreet.getText(), inputPostal.getText(), inputCity.getText(), inputCountry.getText());
-            System.out.println(temp);
+            // Cursist temp = new Cursist(inputInfo.getText(), inputCourseName.getText(), datePicker.getValue(), genderChar, inputStreet.getText(), inputPostal.getText(), inputCity.getText(), inputCountry.getText());
+            // System.out.println(temp);
             Statement stmt = conn.createStatement();
-            String SQL = "INSERT INTO Cursist VALUES ('" + inputInfo.getText() + "', '" + inputCourseName.getText() + "', '" + datePicker.getValue() + "', '" + genderChar + "', '" + inputStreet.getText() + "', '" + inputPostal.getText() + "', '" + inputCity.getText() + "', '" + inputCountry.getText() + "')";
+            // String SQL = "INSERT INTO Cursist VALUES ('" + inputInfo.getText() + "', '" + inputCourseName.getText() + "', '" + datePicker.getValue() + "', '" + genderChar + "', '" + inputStreet.getText() + "', '" + inputPostal.getText() + "', '" + inputCity.getText() + "', '" + inputCountry.getText() + "')";
 
-            stmt.executeUpdate(SQL);
+            // stmt.executeUpdate(SQL);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -164,7 +96,7 @@ public Parent getView() {
 
     //ADD ALL TO VBOX
     vertBox.getChildren()
-            .addAll(createCur, name, courseInfo, DOB, gender, street, postal, city, country, saveCursist);
+            .addAll(createCur, name, courseInfo, saveCursist);
 
     return layout;
 }
