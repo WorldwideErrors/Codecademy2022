@@ -79,6 +79,7 @@ public class CreateCursist {
 
         //INPUT GENDER
         HBox gender = new HBox(10);
+        gender.setTranslateX(-19);
         gender.setPadding(inputInset);
         gender.setAlignment(Pos.CENTER);
 
@@ -96,6 +97,7 @@ public class CreateCursist {
         //INPUT STREET, POSTAL, CITY, COUNTRY
         //STREET
         HBox street = new HBox(10);
+        street.setTranslateX(1);
         street.setPadding(inputInset);
         street.setAlignment(Pos.CENTER);
         Label labelStreet = new Label("Street:");
@@ -105,6 +107,7 @@ public class CreateCursist {
 
         //POSTAL
         HBox postal = new HBox(10);
+        postal.setTranslateX(-21);
         postal.setPadding(inputInset);
         postal.setAlignment(Pos.CENTER);
 
@@ -115,6 +118,7 @@ public class CreateCursist {
 
         //CITY
         HBox city = new HBox(10);
+        city.setTranslateX(10);
         city.setPadding(inputInset);
         city.setAlignment(Pos.CENTER);
 
@@ -125,6 +129,7 @@ public class CreateCursist {
 
         //COUNTRY
         HBox country = new HBox(10);
+        country.setTranslateX(-6);
         country.setPadding(inputInset);
         country.setAlignment(Pos.CENTER);
 

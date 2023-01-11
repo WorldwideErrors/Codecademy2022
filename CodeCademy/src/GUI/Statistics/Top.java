@@ -40,9 +40,9 @@ public class Top {
         layout.setCenter(vertBox);
 
         //TOP TITLE
-        Text welcome = new Text("Top 3 most viewed:");
+        Text welcome = new Text("Top 3:");
         welcome.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
-        Text underMessage = new Text("Select what you want to view.");
+        Text underMessage = new Text("See the top 3 below.");
         underMessage.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
 
         HBox topBoth = new HBox(10);
@@ -57,12 +57,33 @@ public class Top {
         Label labelWebcast = new Label("Top 3 webcasts:");
         labelWebcast.setFont(Font.font("verdana", FontWeight.BOLD, 14));
         Label infoWebcast = new Label();
+       
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            Statement stmt = conn.createStatement();
+
+            String SQL = "SELECT TOP 3 Title, NumberOfViews FROM Webcast\n"
+                    + "ORDER BY NumberOfViews DESC";
+            ResultSet rs = stmt.executeQuery(SQL);
+
+            String webcastStr = "";
+            while (rs.next()) {
+
+                webcastStr += rs.getString("Title") + " - " + rs.getString("NumberOfViews") + " View(s)\n";
+
+                infoWebcast.setText(webcastStr);
+                infoWebcast.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, 14));
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
 
 //COURSE
         VBox vboxCourse = new VBox();
 
         vboxCourse.setPadding(new Insets(20, 20, 0, 20));
-        Label labelCourse = new Label("Top 3 courses:");
+        Label labelCourse = new Label("Top 3 finished courses:");
         labelCourse.setFont(Font.font("verdana", FontWeight.BOLD, 14));
         Label infoCourse = new Label("1234");
 
@@ -70,15 +91,15 @@ public class Top {
             Connection conn = DatabaseConnection.getConnection();
             Statement stmt = conn.createStatement();
 
-            String SQL = "SELECT TOP 3 CourseName, COUNT(CourseName) AS Students FROM REGISTRATION\n"
+            String SQL = "SELECT TOP 3 CourseName, COUNT(CertificateId) AS Certificates FROM REGISTRATION\n"
                     + "GROUP BY CourseName\n"
-                    + "ORDER BY Students DESC";
+                    + "ORDER BY Certificates DESC";
             ResultSet rs = stmt.executeQuery(SQL);
 
             String courseStr = "";
             while (rs.next()) {
 
-                courseStr += rs.getString("CourseName") + " - " + rs.getString("Students") + " Registrations\n";
+                courseStr += rs.getString("CourseName") + " - " + rs.getString("Certificates") + " Certificate(s) received\n";
 
                 infoCourse.setText(courseStr);
                 infoCourse.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, 14));

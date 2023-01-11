@@ -70,7 +70,7 @@ public class InterfaceGUI extends Application {
         MenuItem delete = new MenuItem("Delete Cursist");
         MenuButton cursistMenu = new MenuButton("Cursist", null, create, view, update, delete);
 
-        cursistMenu.setTranslateX(150);
+        cursistMenu.setTranslateX(90);
         cursistMenu.setPrefSize(104, 30);
 //DROPDOWN COURSE
         MenuItem createC = new MenuItem("Create Course");
@@ -79,7 +79,7 @@ public class InterfaceGUI extends Application {
         MenuItem deleteC = new MenuItem("Delete Course");
         MenuButton courseMenu = new MenuButton("Course", null, createC, viewC, updateC, deleteC);
 
-        courseMenu.setTranslateX(150);
+        courseMenu.setTranslateX(90);
         courseMenu.setPrefSize(104, 30);
 //DROPDOWN REGISTRATIONS
         MenuItem createR = new MenuItem("Create Registration");
@@ -88,7 +88,7 @@ public class InterfaceGUI extends Application {
         MenuItem deleteR = new MenuItem("Delete Registration");
         MenuButton registrationMenu = new MenuButton("Registration", null, createR, viewR, updateR, deleteR);
 
-        registrationMenu.setTranslateX(150);
+        registrationMenu.setTranslateX(90);
         registrationMenu.setPrefSize(104, 30);
 //DROPDOWN CERTIFICATES
         MenuItem createCR = new MenuItem("Create Certificate");
@@ -97,13 +97,13 @@ public class InterfaceGUI extends Application {
         MenuItem deleteCR = new MenuItem("Delete Certificate");
         MenuButton certificateMenu = new MenuButton("Registration", null, createCR, viewCR, updateCR, deleteCR);
 
-        certificateMenu.setTranslateX(150);
+        certificateMenu.setTranslateX(90);
         certificateMenu.setPrefSize(104, 30);
 
 //DROPDOWN STATISTICS
         MenuItem viewTop = new MenuItem("View top items");
         MenuButton statMenu = new MenuButton("Statistics", null, viewTop);
-        statMenu.setTranslateX(150);
+        statMenu.setTranslateX(90);
         statMenu.setPrefSize(104, 30);
 //HBOX FOR MENUBUTTON
         HBox center = new HBox(5);
