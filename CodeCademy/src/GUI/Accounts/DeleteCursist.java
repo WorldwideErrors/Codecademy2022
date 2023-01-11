@@ -6,8 +6,8 @@
 package GUI.Accounts;
 
 import DatabaseConnection.DatabaseConnection;
-import People.Cursist;
 import java.sql.*;
+import People.Cursist;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -65,9 +65,6 @@ public class DeleteCursist {
         //BUTTON ON ACTION -> DELETES INPUTTED CURSIST
         try {
             Connection conn = DatabaseConnection.getConnection();
-
-            //  Cursist temp = new Cursist(inputEmail.getText(), inputName.getText(), datePicker.getValue(), genderChar, inputStreet.getText(), inputPostal.getText(), inputCity.getText(), inputCountry.getText());
-            //   System.out.println(temp);
             Statement stmt = conn.createStatement();
             String SQL = "DELETE FROM Cursist WHERE Email = '" + inputEmail.getText() + "'";
 

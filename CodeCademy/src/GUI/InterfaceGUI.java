@@ -9,6 +9,7 @@ import GUI.Courses.ViewCourses;
 import GUI.Registrations.CreateRegistration;
 import GUI.Registrations.DeleteRegistration;
 import GUI.Registrations.ViewRegistration;
+import GUI.Statistics.Top;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -30,17 +31,21 @@ public class InterfaceGUI extends Application {
     @Override
     public void start(Stage stage) {
 //VIEWS
+//CURSIST VIEWS
         CreateCursist cursistCreateView = new CreateCursist();
         ViewCursist cursistViewView = new ViewCursist();
         UpdateCursist cursistUpdateView = new UpdateCursist();
         DeleteCursist cursistDeleteView = new DeleteCursist();
-
+//COURSE VIEWS
         CreateCourse courseCreateView = new CreateCourse();
         ViewCourses courseViewView = new ViewCourses();
-
+//REGISTRATION VIEWS
         CreateRegistration createRegistrationView = new CreateRegistration();
         DeleteRegistration deleteRegistrationView = new DeleteRegistration();
         ViewRegistration viewRegistrationView = new ViewRegistration();
+        //CERTIFICATE VIEWS
+//STATISTIC VIEWS
+        Top topView = new Top();
         //WELCOME SCENE
         BorderPane mainPane = new BorderPane();
 
@@ -94,9 +99,15 @@ public class InterfaceGUI extends Application {
 
         certificateMenu.setTranslateX(150);
         certificateMenu.setPrefSize(104, 30);
+
+//DROPDOWN STATISTICS
+        MenuItem viewTop = new MenuItem("View top items");
+        MenuButton statMenu = new MenuButton("Statistics", null, viewTop);
+        statMenu.setTranslateX(150);
+        statMenu.setPrefSize(104, 30);
 //HBOX FOR MENUBUTTON
         HBox center = new HBox(5);
-        center.getChildren().addAll(cursistMenu, courseMenu, registrationMenu, certificateMenu);
+        center.getChildren().addAll(cursistMenu, courseMenu, registrationMenu, certificateMenu, statMenu);
 
 //CENTER FOR PLACING THE MENUBUTTON
         centerView.setCenter(center);
@@ -174,6 +185,11 @@ public class InterfaceGUI extends Application {
 
         deleteCR.setOnAction((eventCR4) -> {
 
+        });
+        //SET ON ACTION STATISTICS
+        viewTop.setOnAction((eventVT) ->{
+           Scene viewTopScene = new Scene(topView.getView());
+           stage.setScene(viewTopScene);
         });
         //OTHER
         mainPane.setTop(Welcome);
