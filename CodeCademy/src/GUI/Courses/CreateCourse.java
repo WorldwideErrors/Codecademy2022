@@ -1,12 +1,17 @@
 package GUI.Courses;
 
 import java.sql.*;
+
+import Curriculum.Course;
+import Curriculum.Level;
+import Curriculum.Status;
 import DatabaseConnection.DatabaseConnection;
 import People.Cursist;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -25,6 +30,7 @@ public class CreateCourse {
 
 public CreateCourse() {
 }
+
 
 public Parent getView() {
     BorderPane layout = new BorderPane();
@@ -45,6 +51,7 @@ public Parent getView() {
     HBox name = new HBox(10);
     name.setPadding(new Insets(20, 20, 0, 20));
     name.setAlignment(Pos.CENTER);
+    name.setTranslateX(-12.5);
 
     Label labelName = new Label("Coursename: ");
     labelName.setFont(Font.font("verdana", FontWeight.BOLD, 14));
@@ -54,18 +61,42 @@ public Parent getView() {
     HBox courseInfo = new HBox(10);
     courseInfo.setPadding(inputInset);
     courseInfo.setAlignment(Pos.CENTER);
+    courseInfo.setTranslateX(-12.5);
 
     Label labelInfo = new Label("Description: ");
     labelInfo.setFont(Font.font("verdana", FontWeight.BOLD, 14));
     TextArea inputInfo = new TextArea();
 
-    
+    //INPUT FIELDS INTRODUCTIONTEXT
+    HBox courseLevel = new HBox(10);
+    courseLevel.setPadding(inputInset);
+    courseLevel.setAlignment(Pos.CENTER);
+    courseLevel.setTranslateX(1);
 
-    TextField inputCountry = new TextField();
+    Label labelLevel = new Label("Level: ");
+    labelLevel.setFont(Font.font("verdana", FontWeight.BOLD, 14));
+    
+    ComboBox courseLevels = new ComboBox<>();
+    courseLevels.getItems().addAll(Level.ADVANCED, Level.BEGINNER, Level.EXPERT);
+    courseLevels.setPromptText("Choose Level...");
+
+    //INPUT FIELDS INTRODUCTIONTEXT
+    HBox courseStatus = new HBox(10);
+    courseStatus.setPadding(inputInset);
+    courseStatus.setAlignment(Pos.CENTER);
+
+    Label labelStatus = new Label("Status: ");
+    labelStatus.setFont(Font.font("verdana", FontWeight.BOLD, 14));
+    
+    ComboBox courseStatusses = new ComboBox<>();
+    courseStatusses.getItems().addAll(Status.ACTIVE, Status.ARCHIVED, Status.CONCEPT);
+    courseStatusses.setPromptText("Choose Status...");
 
     //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
     name.getChildren().addAll(labelName, inputCourseName);
     courseInfo.getChildren().addAll(labelInfo, inputInfo);
+    courseLevel.getChildren().addAll(labelLevel, courseLevels);
+    courseStatus.getChildren().addAll(labelStatus, courseStatusses);
 
 //SAVE BUTTON
     Button saveCursist = new Button("Save");
@@ -74,20 +105,12 @@ public Parent getView() {
         try {
             Connection conn = DatabaseConnection.getConnection();
 
-            char genderChar = 0;
-
-            // if (femaleGender.isSelected()) {
-            //     genderChar = 'f';
-            // } else {
-            //     genderChar = 'm';
-            // }
-
-            // Cursist temp = new Cursist(inputInfo.getText(), inputCourseName.getText(), datePicker.getValue(), genderChar, inputStreet.getText(), inputPostal.getText(), inputCity.getText(), inputCountry.getText());
-            // System.out.println(temp);
-            Statement stmt = conn.createStatement();
-            // String SQL = "INSERT INTO Cursist VALUES ('" + inputInfo.getText() + "', '" + inputCourseName.getText() + "', '" + datePicker.getValue() + "', '" + genderChar + "', '" + inputStreet.getText() + "', '" + inputPostal.getText() + "', '" + inputCity.getText() + "', '" + inputCountry.getText() + "')";
-
-            // stmt.executeUpdate(SQL);
+            Course temp = new Course(inputCourseName.getText(), inputInfo.getText());
+                System.out.println(temp + ", " + courseLevels.getValue() + ", " + courseStatusses.getValue());
+                Statement stmt = conn.createStatement();
+                String SQL = "INSERT INTO Course VALUES ('" + inputCourseName.getText() + "', '" + inputInfo.getText() + "', '" + courseLevels.getValue() + "', '" + courseStatusses.getValue() + "')";
+                System.out.println(SQL);
+                stmt.executeUpdate(SQL);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
@@ -96,7 +119,7 @@ public Parent getView() {
 
     //ADD ALL TO VBOX
     vertBox.getChildren()
-            .addAll(createCur, name, courseInfo, saveCursist);
+            .addAll(createCur, name, courseInfo, courseLevel, courseStatus, saveCursist);
 
     return layout;
 }

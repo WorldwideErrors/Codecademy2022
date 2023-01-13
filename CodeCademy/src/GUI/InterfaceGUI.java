@@ -6,15 +6,11 @@ import GUI.Accounts.UpdateCursist;
 import GUI.Accounts.ViewCursist;
 import GUI.Courses.CreateCourse;
 import GUI.Courses.ViewCourses;
-<<<<<<< Updated upstream
+import GUI.Registrations.AddRegistration;
 import GUI.Registrations.CreateRegistration;
 import GUI.Registrations.DeleteRegistration;
 import GUI.Registrations.ViewRegistration;
-import GUI.Statistics.Top;
-
-=======
-import GUI.Registrations.AddRegistration;
->>>>>>> Stashed changes
+import GUI.Statistics.Top; 
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
