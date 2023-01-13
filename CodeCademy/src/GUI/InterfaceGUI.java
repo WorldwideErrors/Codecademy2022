@@ -6,11 +6,15 @@ import GUI.Accounts.UpdateCursist;
 import GUI.Accounts.ViewCursist;
 import GUI.Courses.CreateCourse;
 import GUI.Courses.ViewCourses;
+<<<<<<< Updated upstream
 import GUI.Registrations.CreateRegistration;
 import GUI.Registrations.DeleteRegistration;
 import GUI.Registrations.ViewRegistration;
 import GUI.Statistics.Top;
 
+=======
+import GUI.Registrations.AddRegistration;
+>>>>>>> Stashed changes
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -134,14 +138,13 @@ public class InterfaceGUI extends Application {
         });
         //SET ON ACTION COURSE
         createC.setOnAction((eventC) -> {
-            Scene courseCreateScene = new Scene(courseCreateView.getView());
-            stage.setScene(courseCreateScene);
+            Scene createCourseScene = new Scene(courseCreateView.getView());
+            stage.setScene(createCourseScene);
         });
 
         viewC.setOnAction((eventC2) -> {
-            Scene courseViewScene = new Scene(courseViewView.getView());
-            stage.setScene(courseViewScene);
-
+                Scene courseViewScene = new Scene(courseViewView.getView());
+                stage.setScene(courseViewScene);
         });
 
         updateC.setOnAction((eventC3) -> {
