@@ -186,19 +186,27 @@ public class ViewCourse {
                         Connection conn3 = DatabaseConnection.getConnection();
                         Statement stmt3 = conn3.createStatement();
                         // SELECT COUNT(CursistEmail) FROM Registration WHERE CertificateId IS NOT NULL AND CourseName = 'ENGLISH'
-                        String SQL3 = "SELECT Count(CursistEmail) AS 'Count' FROM Registration WHERE CertificateID IS NOT NULL AND CourseName = '" + courseBox.getValue() + "'";
+                        String SQL3 = "SELECT SUM(CASE WHEN CertificateID IS NOT NULL THEN 1 ELSE 0 END) AS 'Finished', COUNT(CursistEmail) AS 'ALL' FROM Registration WHERE CourseName = '" + courseBox.getValue() + "'";
+                        
                         ResultSet rs3 = stmt3.executeQuery(SQL3);
+                        System.out.println(SQL3);
 
-                        String countString = "";
                         //ATTRIBUTES AND VALUES
                         while (rs3.next()) {
-                            countString = rs3.getString("Count");
+                            int iFinished = rs3.getInt("Finished");
+                            int iAll = rs3.getInt("All");
+                            
+                            if(iFinished > 0){
+                            float percentage = (float) iFinished / iAll * 100;
+                            infoFinished.setText(String.format("%.02f", percentage) + "%");
+                            }else{
+                            infoFinished.setText("Nog geen geslaagde");
+                            }
+                            
+                            infoFinished.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, 14));
                         }
-                    
-                        infoFinished.setText(countString);
-                        infoFinished.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, 14));
                     }catch(SQLException ex) {
-
+                        System.out.println(ex);
                     }
                     //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
                     
