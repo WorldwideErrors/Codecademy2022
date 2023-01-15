@@ -4,9 +4,10 @@ import GUI.Accounts.CreateCursist;
 import GUI.Accounts.DeleteCursist;
 import GUI.Accounts.UpdateCursist;
 import GUI.Accounts.ViewCursist;
+import GUI.Certificates.CreateCertificate;
 import GUI.Courses.CreateCourse;
 import GUI.Courses.DeleteCourse;
-import GUI.Courses.ViewCourses;
+import GUI.Courses.ViewCourse;
 import GUI.Courses.updateCourse;
 import GUI.Registrations.AddRegistration;
 import GUI.Registrations.CreateRegistration;
@@ -40,14 +41,16 @@ public class InterfaceGUI extends Application {
         DeleteCursist cursistDeleteView = new DeleteCursist();
 //COURSE VIEWS
         CreateCourse courseCreateView = new CreateCourse();
-        ViewCourses courseViewView = new ViewCourses();
+        ViewCourse courseViewView = new ViewCourse();
         updateCourse courseUpdateView = new updateCourse();
         DeleteCourse courseDeleteView = new DeleteCourse();
 //REGISTRATION VIEWS
         CreateRegistration createRegistrationView = new CreateRegistration();
         DeleteRegistration deleteRegistrationView = new DeleteRegistration();
         ViewRegistration viewRegistrationView = new ViewRegistration();
-        //CERTIFICATE VIEWS
+//CERTIFICATE VIEWS
+        CreateCertificate createCertificateView = new CreateCertificate();
+        
 //STATISTIC VIEWS
         Top topView = new Top();
         //WELCOME SCENE
@@ -99,7 +102,7 @@ public class InterfaceGUI extends Application {
         MenuItem viewCR = new MenuItem("View Certificate");
         MenuItem updateCR = new MenuItem("Update Certificate");
         MenuItem deleteCR = new MenuItem("Delete Certificate");
-        MenuButton certificateMenu = new MenuButton("Registration", null, createCR, viewCR, updateCR, deleteCR);
+        MenuButton certificateMenu = new MenuButton("Certificates", null, createCR, viewCR, updateCR, deleteCR);
 
         certificateMenu.setTranslateX(90);
         certificateMenu.setPrefSize(104, 30);
@@ -177,7 +180,8 @@ public class InterfaceGUI extends Application {
         });
         //SET ON ACTION CERTIFICATE
         createCR.setOnAction((eventCR) -> {
-
+                Scene createCertificateScene = new Scene(createCertificateView.getView());
+                stage.setScene(createCertificateScene);
         });
 
         viewCR.setOnAction((eventCR2) -> {

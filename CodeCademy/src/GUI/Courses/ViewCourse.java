@@ -25,11 +25,11 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class ViewCourses {
+public class ViewCourse {
     ArrayList<String> courses = new ArrayList<>();
     ComboBox courseBox = new ComboBox<>();
 
-    public ViewCourses() {
+    public ViewCourse() {
     }
 
     /**
