@@ -141,7 +141,7 @@ public class ViewCourse {
                     Label infoStatus = new Label(courseStatusStr);
                     
                     /// ----
-                    //CERTIFICATES
+                    //RECOMMENDED COURSES
                     VBox recommendedCourses = new VBox(10);
                     recommendedCourses.setPadding(inputInset);
                     recommendedCourses.setAlignment(Pos.CENTER);
@@ -161,7 +161,6 @@ public class ViewCourse {
                         String recommendedStr = "";
                         while (rs2.next()) {
                             if (rs2.getString("CourseName") != null) {
-
                                 recommendedStr += rs2.getString("InterestingCourseName") + "\n";
                             }
 
@@ -172,6 +171,35 @@ public class ViewCourse {
 
                     }
 
+                    /// ----
+                    //RECEIVED CERTIFICATES
+                    VBox finishedCursists = new VBox(10);
+                    finishedCursists.setPadding(inputInset);
+                    finishedCursists.setAlignment(Pos.CENTER);
+                    Label dash1 = new Label("-------------------------------------------------------------------------");
+                    Label labelFinished = new Label("Amount of finished cursists:");
+                    labelFinished.setFont(Font.font("verdana", FontWeight.BOLD, 14));
+
+                    Label infoFinished = new Label();
+                    //SQL CODE FOR recommended Courses
+                    try {
+                        Connection conn3 = DatabaseConnection.getConnection();
+                        Statement stmt3 = conn3.createStatement();
+                        // SELECT COUNT(CursistEmail) FROM Registration WHERE CertificateId IS NOT NULL AND CourseName = 'ENGLISH'
+                        String SQL3 = "SELECT Count(CursistEmail) AS 'Count' FROM Registration WHERE CertificateID IS NOT NULL AND CourseName = '" + courseBox.getValue() + "'";
+                        ResultSet rs3 = stmt3.executeQuery(SQL3);
+
+                        String countString = "";
+                        //ATTRIBUTES AND VALUES
+                        while (rs3.next()) {
+                            countString = rs3.getString("Count");
+                        }
+                    
+                        infoFinished.setText(countString);
+                        infoFinished.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, 14));
+                    }catch(SQLException ex) {
+
+                    }
                     //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
                     
                     coursename.getChildren().addAll(labelName, infoName);
@@ -179,8 +207,9 @@ public class ViewCourse {
                     courseLevel.getChildren().addAll(labelLevel, infoLevel);
                     courseStatus.getChildren().addAll(labelStatus, infoStatus);
                     recommendedCourses.getChildren().addAll(labelRecommended, infoRecommended);
+                    finishedCursists.getChildren().addAll(labelFinished, infoFinished);
 
-                    vertBox.getChildren().addAll(courseInfo, coursename, coursedesc, courseLevel, courseStatus, recommendedCourses);
+                    vertBox.getChildren().addAll(courseInfo, coursename, coursedesc, courseLevel, courseStatus, recommendedCourses, finishedCursists);
 
                 }
 
