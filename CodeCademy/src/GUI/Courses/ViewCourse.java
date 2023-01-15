@@ -140,14 +140,47 @@ public class ViewCourse {
                     courseStatus.setAlignment(Pos.CENTER);
                     Label infoStatus = new Label(courseStatusStr);
                     
+                    /// ----
+                    //CERTIFICATES
+                    VBox recommendedCourses = new VBox(10);
+                    recommendedCourses.setPadding(inputInset);
+                    recommendedCourses.setAlignment(Pos.CENTER);
+                    Label dash = new Label("-------------------------------------------------------------------------");
+                    Label labelRecommended = new Label("Recommended Courses:");
+                    labelRecommended.setFont(Font.font("verdana", FontWeight.BOLD, 14));
+
+                    Label infoRecommended = new Label();
+                    //SQL CODE FOR recommended Courses
+                    try {
+                        Connection conn2 = DatabaseConnection.getConnection();
+                        Statement stmt2 = conn2.createStatement();
+                        String SQL2 = "SELECT CourseName, InterestingCourseName FROM InterestingCourse WHERE CourseName = '" + courseBox.getValue() + "'";
+                        ResultSet rs2 = stmt2.executeQuery(SQL2);
+
+                        //ATTRIBUTES AND VALUES
+                        String recommendedStr = "";
+                        while (rs2.next()) {
+                            if (rs2.getString("CourseName") != null) {
+
+                                recommendedStr += rs2.getString("InterestingCourseName") + "\n";
+                            }
+
+                            infoRecommended.setText(recommendedStr);
+                            infoRecommended.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, 14));
+                        }
+                    } catch (SQLException ex) {
+
+                    }
+
                     //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
                     
                     coursename.getChildren().addAll(labelName, infoName);
                     coursedesc.getChildren().addAll(labelDesc, infoIntro);
                     courseLevel.getChildren().addAll(labelLevel, infoLevel);
                     courseStatus.getChildren().addAll(labelStatus, infoStatus);
+                    recommendedCourses.getChildren().addAll(labelRecommended, infoRecommended);
 
-                    vertBox.getChildren().addAll(courseInfo, coursename, coursedesc, courseLevel, courseStatus);
+                    vertBox.getChildren().addAll(courseInfo, coursename, coursedesc, courseLevel, courseStatus, recommendedCourses);
 
                 }
 
