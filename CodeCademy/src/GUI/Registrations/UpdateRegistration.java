@@ -5,15 +5,12 @@
  */
 package GUI.Registrations;
 
-import Curriculum.Course;
 import DatabaseConnection.DatabaseConnection;
-import Papers.Registration;
 import People.Cursist;
-import java.sql.ResultSet;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
@@ -34,7 +31,11 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class AddRegistration {
+public class UpdateRegistration {
+
+    public UpdateRegistration() {
+
+    }
 
     public Parent getView() {
         BorderPane layout = new BorderPane();
@@ -46,7 +47,7 @@ public class AddRegistration {
 
         layout.setCenter(vertBox);
 
-        Text createCur = new Text("Create a registration");
+        Text createCur = new Text("Update a registration");
         createCur.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
 //ALL INPUT FIELDS ARE BELOW HERE
         Insets inputInset = new Insets(0, 20, 0, 20);
@@ -92,54 +93,58 @@ public class AddRegistration {
         coursesMenu.setPromptText("Courses");
         coursesMenu.setTranslateX(10);
         coursesMenu.setPrefSize(150, 30);
+//SQL CODE FOR MENU
+
+        emailMenu.setOnAction((event) -> {
+            String selectedItem = emailMenu.getSelectionModel().getSelectedItem().toString();
+            coursesMenu.getItems().clear();
+            try {
+                String query = "SELECT CourseName from Registration WHERE CursistEmail = '" + selectedItem + "'";
+                Connection conn = DatabaseConnection.getConnection();
+                Statement stmt = conn.createStatement();
+
+                ResultSet rs = stmt.executeQuery(query);
+                while (rs.next()) {
+                    String value = rs.getString("CourseName");
+
+                    coursesMenu.getItems().add(value);
+                }
+            } catch (SQLException ex) {
+            }
+
+        });
 //INPUT FIELDS DATE
 
         HBox date = new HBox(10);
         date.setPadding(inputInset);
         date.setAlignment(Pos.CENTER);
 
-        date.setTranslateX(-12.5);
-        Label labelDate = new Label("Registration date:");
+        date.setTranslateX(-30.5);
+
+        Label labelDate = new Label("New registration date:");
         labelDate.setFont(Font.font("verdana", FontWeight.BOLD, 14));
         labelDate.setTranslateX(-28);
         DatePicker datePicker = new DatePicker();
-        datePicker.setTranslateX(-10);
-//SQL CODE FOR MENU
-        try {
-            String query = "SELECT CourseName FROM Course";
-            Connection conn = DatabaseConnection.getConnection();
-            Statement stmt = conn.createStatement();
-
-            ResultSet rs = stmt.executeQuery(query);
-            while (rs.next()) {
-                String value = rs.getString("CourseName");
-
-                coursesMenu.getItems().add(value);
-            }
-        } catch (SQLException ex) {
-        }
-
+        datePicker.setTranslateX(-18.5);
         //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
         email.getChildren().addAll(labelEmail, emailMenu);
         course.getChildren().addAll(labelCourse, coursesMenu);
+
         date.getChildren().addAll(labelDate, datePicker);
 
-//SAVE BUTTON
-        Button addRegistration = new Button("Create");
+//UPDATE BUTTON
+        Button updateRegistration = new Button("Update");
 
-        addRegistration.setOnAction((event2) -> {
+        updateRegistration.setOnAction((event2) -> {
             try {
+
                 Connection conn = DatabaseConnection.getConnection();
-                Date currentDate = new Date();
 
                 Statement stmt = conn.createStatement();
-                String SQL = "INSERT INTO Registration VALUES('" + datePicker.getValue() + "', '" + emailMenu.getValue() + "', '" + coursesMenu.getValue() + "', NULL)";
-                stmt.executeUpdate(SQL);
-
-                //CLEARING VALUES
-                datePicker.setValue(null);
+                String SQL = "UPDATE Registration SET RegistrationDate = '" + datePicker.getValue() + "' WHERE cursistEmail = '" + emailMenu.getValue() + "' AND CourseName = '" + coursesMenu.getValue() + "'";
                 emailMenu.setValue(null);
                 coursesMenu.setValue(null);
+                stmt.executeUpdate(SQL);
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
@@ -148,7 +153,7 @@ public class AddRegistration {
 
         //ADD ALL TO VBOX
         vertBox.getChildren()
-                .addAll(createCur, email, course, date, addRegistration);
+                .addAll(createCur, email, course, date, updateRegistration);
 
         return layout;
     }

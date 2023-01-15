@@ -12,11 +12,12 @@ import GUI.Courses.CreateCourse;
 import GUI.Courses.DeleteCourse;
 import GUI.Courses.ViewCourse;
 import GUI.Courses.updateCourse;
-import GUI.Registrations.AddRegistration;
+
 import GUI.Registrations.CreateRegistration;
 import GUI.Registrations.DeleteRegistration;
+import GUI.Registrations.UpdateRegistration;
 import GUI.Registrations.ViewRegistration;
-import GUI.Statistics.Top; 
+import GUI.Statistics.Top;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -51,6 +52,7 @@ public class InterfaceGUI extends Application {
         CreateRegistration createRegistrationView = new CreateRegistration();
         DeleteRegistration deleteRegistrationView = new DeleteRegistration();
         ViewRegistration viewRegistrationView = new ViewRegistration();
+        UpdateRegistration updateRegistrationView = new UpdateRegistration();
 //CERTIFICATE VIEWS
         CreateCertificate createCertificateView = new CreateCertificate();
         ViewCertificate viewCertificateView = new ViewCertificate();
@@ -151,18 +153,18 @@ public class InterfaceGUI extends Application {
         });
 
         viewC.setOnAction((eventC2) -> {
-                Scene courseViewScene = new Scene(courseViewView.getView());
-                stage.setScene(courseViewScene);
+            Scene courseViewScene = new Scene(courseViewView.getView());
+            stage.setScene(courseViewScene);
         });
 
         updateC.setOnAction((eventC3) -> {
-                Scene courseUpdateScene = new Scene(courseUpdateView.getView());
-                stage.setScene(courseUpdateScene);
+            Scene courseUpdateScene = new Scene(courseUpdateView.getView());
+            stage.setScene(courseUpdateScene);
         });
 
         deleteC.setOnAction((eventC4) -> {
-                Scene courseDeleteScene = new Scene(courseDeleteView.getView());
-                stage.setScene(courseDeleteScene);
+            Scene courseDeleteScene = new Scene(courseDeleteView.getView());
+            stage.setScene(courseDeleteScene);
         });
         //SET ON ACTION REGISTRATION   
         createR.setOnAction((eventR) -> {
@@ -176,7 +178,8 @@ public class InterfaceGUI extends Application {
         });
 
         updateR.setOnAction((eventR3) -> {
-
+            Scene updateRegistrationScene = new Scene(updateRegistrationView.getView());
+            stage.setScene(updateRegistrationScene);
         });
 
         deleteR.setOnAction((eventR4) -> {
@@ -185,28 +188,28 @@ public class InterfaceGUI extends Application {
         });
         //SET ON ACTION CERTIFICATE
         createCR.setOnAction((eventCR) -> {
-                Scene createCertificateScene = new Scene(createCertificateView.getView());
-                stage.setScene(createCertificateScene);
+            Scene createCertificateScene = new Scene(createCertificateView.getView());
+            stage.setScene(createCertificateScene);
         });
 
         viewCR.setOnAction((eventCR2) -> {
-                Scene viewCertificateScene = new Scene(viewCertificateView.getView());
-                stage.setScene(viewCertificateScene);
+            Scene viewCertificateScene = new Scene(viewCertificateView.getView());
+            stage.setScene(viewCertificateScene);
         });
 
         updateCR.setOnAction((eventCR3) -> {
-                Scene updateCertificateScene = new Scene(updateCertificateView.getView());
-                stage.setScene(updateCertificateScene);
+            Scene updateCertificateScene = new Scene(updateCertificateView.getView());
+            stage.setScene(updateCertificateScene);
         });
 
         deleteCR.setOnAction((eventCR4) -> {
-                Scene deleteCertificateScene = new Scene(deleteCertificateView.getView());
-                stage.setScene(deleteCertificateScene);
+            Scene deleteCertificateScene = new Scene(deleteCertificateView.getView());
+            stage.setScene(deleteCertificateScene);
         });
         //SET ON ACTION STATISTICS
-        viewTop.setOnAction((eventVT) ->{
-           Scene viewTopScene = new Scene(topView.getView());
-           stage.setScene(viewTopScene);
+        viewTop.setOnAction((eventVT) -> {
+            Scene viewTopScene = new Scene(topView.getView());
+            stage.setScene(viewTopScene);
         });
         //OTHER
         mainPane.setTop(Welcome);

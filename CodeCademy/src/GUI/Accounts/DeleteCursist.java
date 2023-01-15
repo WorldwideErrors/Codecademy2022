@@ -13,6 +13,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -47,35 +48,53 @@ public class DeleteCursist {
         Text underMessage = new Text("Input the email of the cursist you want to delete.");
         underMessage.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
 
-        ///// EVERYTHING BELOW THIS IS WIP <--------------------------------------------
+        //INPUT FIELDS EMAIL
         HBox email = new HBox(10);
         email.setPadding(new Insets(0, 20, 20, 20));
         email.setAlignment(Pos.CENTER);
 
         Label labelEmail = new Label("Email: ");
-        labelEmail.setFont(Font.font("verdana", FontWeight.BOLD, 14));
-        TextField inputEmail = new TextField();
+        ComboBox emailMenu = new ComboBox();
+        emailMenu.setPromptText("Email");
 
-        //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
-        email.getChildren().addAll(labelEmail, inputEmail);
+        emailMenu.setPrefSize(150, 30);
 
-        //SAVE BUTTON
-        Button saveEmployee = new Button("Delete");
-
-        //BUTTON ON ACTION -> DELETES INPUTTED CURSIST
+//SQL CODE FOR MENU
         try {
+            String query = "SELECT Email FROM Cursist";
             Connection conn = DatabaseConnection.getConnection();
             Statement stmt = conn.createStatement();
-            String SQL = "DELETE FROM Cursist WHERE Email = '" + inputEmail.getText() + "'";
 
-            stmt.executeUpdate(SQL);
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                String value = rs.getString("Email");
+
+                emailMenu.getItems().add(value);
+            }
         } catch (SQLException ex) {
-            ex.printStackTrace();
         }
+        //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
+        email.getChildren().addAll(labelEmail, emailMenu);
+
+        //SAVE BUTTON
+        Button deleteCursist = new Button("Delete");
+
+        //BUTTON ON ACTION -> DELETES INPUTTED CURSIST
+        deleteCursist.setOnAction((event) -> {
+            try {
+                Connection conn = DatabaseConnection.getConnection();
+                Statement stmt = conn.createStatement();
+                String SQL = "DELETE FROM Cursist WHERE Email = '" + emailMenu.getValue() + "'";
+
+                stmt.executeUpdate(SQL);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        });
 
         //ADD ALL TO VBOX
         vertBox.getChildren()
-                .addAll(createEmp, underMessage, email, saveEmployee);
+                .addAll(createEmp, underMessage, email, deleteCursist);
 
         return layout;
     }

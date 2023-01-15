@@ -15,11 +15,11 @@ public class Registration {
         this.certificate = null;
     }
 
-//    public Certificate getCertificate(Certificate certificate) {
-//        return certificate;
-//    }
+    public Certificate getCertificate(Certificate certificate) {
+        return certificate;
+    }
 
     public void setCertificate(Certificate certificate) {
-//registration.setCertificate(certificate)
+        this.certificate = certificate;
     }
 }

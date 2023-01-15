@@ -125,7 +125,7 @@ public class CreateRegistration {
         addRegistration.setOnAction((event2) -> {
             try {
                 Connection conn = DatabaseConnection.getConnection();
-                Date currentDate = new Date();
+               
 
                 Statement stmt = conn.createStatement();
                 String SQL = "INSERT INTO Registration VALUES('" + datePicker.getValue() + "', '" + emailMenu.getValue() + "', '" + coursesMenu.getValue() + "', NULL)";

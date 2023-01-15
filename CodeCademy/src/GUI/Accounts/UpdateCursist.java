@@ -45,7 +45,7 @@ public class UpdateCursist {
         layout.setLeft(null);
         layout.setCenter(vertBox);
 
-        Text createEmp = new Text("Update an employee");
+        Text createEmp = new Text("Update a cursist");
         createEmp.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
         Text underMessage = new Text("Input the email of the cursist you want to update.");
         underMessage.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
@@ -55,7 +55,7 @@ public class UpdateCursist {
         email.setPadding(new Insets(0, 20, 0, 20));
         email.setAlignment(Pos.CENTER);
 
-        Label labelEmail = new Label("Email: ");
+        Label labelEmail = new Label("Old email: ");
         labelEmail.setFont(Font.font("verdana", FontWeight.BOLD, 14));
         TextField inputEmail = new TextField();
 
