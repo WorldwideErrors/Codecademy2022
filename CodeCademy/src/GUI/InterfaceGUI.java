@@ -5,6 +5,7 @@ import GUI.Accounts.DeleteCursist;
 import GUI.Accounts.UpdateCursist;
 import GUI.Accounts.ViewCursist;
 import GUI.Courses.CreateCourse;
+import GUI.Courses.DeleteCourse;
 import GUI.Courses.ViewCourses;
 import GUI.Registrations.AddRegistration;
 import GUI.Registrations.CreateRegistration;
@@ -39,6 +40,7 @@ public class InterfaceGUI extends Application {
 //COURSE VIEWS
         CreateCourse courseCreateView = new CreateCourse();
         ViewCourses courseViewView = new ViewCourses();
+        DeleteCourse courseDeleteView = new DeleteCourse();
 //REGISTRATION VIEWS
         CreateRegistration createRegistrationView = new CreateRegistration();
         DeleteRegistration deleteRegistrationView = new DeleteRegistration();
@@ -148,7 +150,8 @@ public class InterfaceGUI extends Application {
         });
 
         deleteC.setOnAction((eventC4) -> {
-
+                Scene courseDeleteScene = new Scene(courseDeleteView.getView());
+                stage.setScene(courseDeleteScene);
         });
         //SET ON ACTION REGISTRATION   
         createR.setOnAction((eventR) -> {
