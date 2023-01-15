@@ -51,7 +51,7 @@ public class Cursist {
         }
     }
 
-    public Boolean formatEmail(String email) {
+    public static Boolean formatEmail(String email) {
         String[] parts = email.split("[@.]");
 
         try {
@@ -72,7 +72,7 @@ public class Cursist {
 
     }
 
-    public String formatPostalCode(String postalCode) {
+    public static String formatPostalCode(String postalCode) {
         // trim postal code
         postalCode = postalCode.trim();
         postalCode = postalCode.toUpperCase();
