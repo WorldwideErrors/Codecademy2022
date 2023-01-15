@@ -32,6 +32,9 @@ public class CreateCertificate {
 public CreateCertificate() {
 }
 
+ /**
+     * @author WorldWideErrors
+     */
 
 public Parent getView() {
     BorderPane layout = new BorderPane();
