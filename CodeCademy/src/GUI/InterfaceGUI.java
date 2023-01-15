@@ -6,6 +6,7 @@ import GUI.Accounts.UpdateCursist;
 import GUI.Accounts.ViewCursist;
 import GUI.Certificates.CreateCertificate;
 import GUI.Certificates.DeleteCertificate;
+import GUI.Certificates.UpdateCertificate;
 import GUI.Certificates.ViewCertificate;
 import GUI.Courses.CreateCourse;
 import GUI.Courses.DeleteCourse;
@@ -54,6 +55,7 @@ public class InterfaceGUI extends Application {
         CreateCertificate createCertificateView = new CreateCertificate();
         ViewCertificate viewCertificateView = new ViewCertificate();
         DeleteCertificate deleteCertificateView = new DeleteCertificate();
+        UpdateCertificate updateCertificateView = new UpdateCertificate();
 //STATISTIC VIEWS
         Top topView = new Top();
         //WELCOME SCENE
@@ -193,7 +195,8 @@ public class InterfaceGUI extends Application {
         });
 
         updateCR.setOnAction((eventCR3) -> {
-
+                Scene updateCertificateScene = new Scene(updateCertificateView.getView());
+                stage.setScene(updateCertificateScene);
         });
 
         deleteCR.setOnAction((eventCR4) -> {
