@@ -40,14 +40,17 @@ public class Top {
         layout.setCenter(vertBox);
 
         //TOP TITLE
-        Text welcome = new Text("Top 3:");
+        Text welcome = new Text("Statistics:");
         welcome.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
-        Text underMessage = new Text("See the top 3 below.");
+        Text underMessage = new Text("See the statistics below.");
         underMessage.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
 
         HBox topBoth = new HBox(10);
         topBoth.setAlignment(Pos.CENTER);
         topBoth.setPadding(new Insets(20, 20, 0, 20));
+        HBox topGender = new HBox(10);
+        topGender.setAlignment(Pos.CENTER);
+        topGender.setPadding(new Insets(20, 20, 0, 20));
 
 //WEBCAST
         VBox vboxWebcast = new VBox();
@@ -57,7 +60,7 @@ public class Top {
         Label labelWebcast = new Label("Top 3 webcasts:");
         labelWebcast.setFont(Font.font("verdana", FontWeight.BOLD, 14));
         Label infoWebcast = new Label();
-       
+
         try {
             Connection conn = DatabaseConnection.getConnection();
             Statement stmt = conn.createStatement();
@@ -109,13 +112,112 @@ public class Top {
             ex.printStackTrace();
         }
 
+        //FEMALE
+        VBox vboxFemale = new VBox();
+
+        vboxCourse.setPadding(new Insets(20, 20, 0, 20));
+        Label labelFemale = new Label("Top 3 finished courses - Female:");
+        labelFemale.setFont(Font.font("verdana", FontWeight.BOLD, 14));
+        Label infoFemale = new Label("1234");
+
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            Statement stmt = conn.createStatement();
+
+            String SQL = "SELECT TOP 3  r.CourseName, c.Gender,\n"
+                    + "    SUM(CASE WHEN r.CertificateID IS NOT NULL THEN 1 ELSE 0 END) AS 'Finished', \n"
+                    + "    COUNT(r.CursistEmail) AS 'ALL' \n"
+                    + "FROM Registration r \n"
+                    + "INNER JOIN Cursist c ON r.CursistEmail = c.Email\n"
+                    + "Where c.Gender = 'f'\n"
+                    + "GROUP BY c.Gender, r.CourseName\n"
+                    + "ORDER BY Finished DESC;";
+
+            ResultSet rs = stmt.executeQuery(SQL);
+
+
+            String femaleStr = "";
+            while (rs.next()) {
+                int iFinished = rs.getInt("Finished");
+                int iAll = rs.getInt("ALL");
+
+                if (iFinished > 0) {
+                    float percentage = (float) iFinished / iAll * 100;
+                    String result = rs.getString("CourseName") + " - " + String.format(iFinished + "/" + iAll + " (%.02f", percentage) + "%)\n";
+                    femaleStr += result;
+                }
+            }
+
+            if (femaleStr.isEmpty()) {
+                infoFemale.setText("-");
+            } else {
+                infoFemale.setText(femaleStr);
+            }
+
+            infoFemale.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, 14));
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+//MALE
+        //FEMALE
+        VBox vboxMale = new VBox();
+
+        vboxCourse.setPadding(new Insets(20, 20, 0, 20));
+        Label labelMale = new Label("Top 3 finished courses - Male:");
+        labelMale.setFont(Font.font("verdana", FontWeight.BOLD, 14));
+        Label infoMale = new Label("1234");
+
+        try {
+            Connection conn = DatabaseConnection.getConnection();
+            Statement stmt = conn.createStatement();
+
+            String SQL = "SELECT TOP 3  r.CourseName, c.Gender,\n"
+                    + "    SUM(CASE WHEN r.CertificateID IS NOT NULL THEN 1 ELSE 0 END) AS 'Finished', \n"
+                    + "    COUNT(r.CursistEmail) AS 'ALL' \n"
+                    + "FROM Registration r \n"
+                    + "INNER JOIN Cursist c ON r.CursistEmail = c.Email\n"
+                    + "Where c.Gender = 'm'\n"
+                    + "GROUP BY c.Gender, r.CourseName\n"
+                    + "ORDER BY Finished DESC;";
+
+            ResultSet rs = stmt.executeQuery(SQL);
+
+
+            String maleStr = "";
+            while (rs.next()) {
+                int iFinished = rs.getInt("Finished");
+                int iAll = rs.getInt("ALL");
+
+                if (iFinished > 0) {
+                    float percentage = (float) iFinished / iAll * 100;
+                    String result = rs.getString("CourseName") + " - " + String.format(iFinished + "/" + iAll + " (%.02f", percentage) + "%)\n";
+                  maleStr += result;
+                }
+            }
+
+            if (maleStr.isEmpty()) {
+                infoMale.setText("-");
+            } else {
+                infoMale.setText(maleStr);
+            }
+
+            infoMale.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, 14));
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
         //ADDING TO VBOX
         topBoth.getChildren().addAll(vboxWebcast, vboxCourse);
+        topGender.getChildren().addAll(vboxFemale, vboxMale);
 
+        
         vboxCourse.getChildren().addAll(labelCourse, infoCourse);
         vboxWebcast.getChildren().addAll(labelWebcast, infoWebcast);
-
-        vertBox.getChildren().addAll(welcome, underMessage, topBoth);
+        vboxFemale.getChildren().addAll(labelFemale, infoFemale);
+        vboxMale.getChildren().addAll(labelMale, infoMale);
+        vertBox.getChildren().addAll(welcome, underMessage, topBoth, topGender);
 
         return layout;
     }

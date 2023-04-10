@@ -198,9 +198,9 @@ public class ViewCourse {
                             
                             if(iFinished > 0){
                             float percentage = (float) iFinished / iAll * 100;
-                            infoFinished.setText(String.format("%.02f", percentage) + "%");
+                            infoFinished.setText(String.format(iFinished + "/" + iAll +  " (%.02f", percentage) + "%)");
                             }else{
-                            infoFinished.setText("Nog geen geslaagde");
+                            infoFinished.setText("0 finished");
                             }
                             
                             infoFinished.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, 14));
