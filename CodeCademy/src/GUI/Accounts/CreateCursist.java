@@ -7,10 +7,12 @@ package GUI.Accounts;
 
 import java.sql.*;
 import DatabaseConnection.DatabaseConnection;
+import GUI.InterfaceGUI;
 import People.Cursist;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -24,6 +26,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  *
@@ -174,10 +177,20 @@ public class CreateCursist {
             }
 
         });
+        //HOME BUTTON
+        
+        InterfaceGUI gui = new InterfaceGUI();
+        
+        Button home = new Button("Home");
+        home.setOnAction((event) -> {
+             Stage stage = (Stage) home.getScene().getWindow(); // get the current stage
+    stage.hide();
+        });
+
 
         //ADD ALL TO VBOX
         vertBox.getChildren()
-                .addAll(createCur, name, email, DOB, gender, street, postal, city, country, saveCursist);
+                .addAll(createCur, name, email, DOB, gender, street, postal, city, country, saveCursist, home);
 
         return layout;
     }
