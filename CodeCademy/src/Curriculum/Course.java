@@ -1,8 +1,6 @@
 package Curriculum;
 
-import People.Cursist;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class Course {
 

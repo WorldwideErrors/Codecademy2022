@@ -1,7 +1,3 @@
-//Deze UnitTest wordt ook niet gebruikt, binnen de app maken wij gebruik van datePickers, die geen foute datum kunnen inputten.
-//
-//
-//
 //import org.junit.Test;
 //import static org.junit.Assert.*;
 //

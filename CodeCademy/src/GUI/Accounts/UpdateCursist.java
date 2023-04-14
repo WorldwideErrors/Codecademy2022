@@ -1,16 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package GUI.Accounts;
 
 import DatabaseConnection.DatabaseConnection;
 import GUI.InterfaceGUI;
 import People.Cursist;
 import java.sql.*;
-import People.Employee;
-import java.time.LocalDate;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -27,10 +21,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Ordinary
- */
+
 public class UpdateCursist {
 
     public UpdateCursist() {
@@ -47,37 +38,33 @@ public class UpdateCursist {
         layout.setRight(null);
         layout.setLeft(null);
         layout.setCenter(vertBox);
-
+//TITLE
         Text createEmp = new Text("Update a cursist");
         createEmp.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
         Text underMessage = new Text("Input the email of the cursist you want to update.");
-        underMessage.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
-
-        //INPUT FIELDS EMAIL
+        underMessage.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));        
+//OLD EMAIL
         HBox email = new HBox(10);
         email.setPadding(new Insets(0, 51, 0, 20));
         email.setAlignment(Pos.CENTER);
 
         Label labelEmail = new Label("Old email: ");
         labelEmail.setFont(Font.font("verdana", FontWeight.BOLD, 14));
-        TextField inputEmail = new TextField();
-
-        //NEW EMAIL
+        TextField inputEmail = new TextField();        
+//NEW EMAIL
         HBox newEmail = new HBox(10);
         newEmail.setPadding(new Insets(0, 39, 0, 0));
         newEmail.setAlignment(Pos.CENTER);
 
         Label labelNewEmail = new Label("New email: ");
         labelNewEmail.setFont(Font.font("verdana", FontWeight.BOLD, 14));
-        TextField inputNewEmail = new TextField();
-        //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
+        TextField inputNewEmail = new TextField();        
+//ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
         email.getChildren().addAll(labelEmail, inputEmail);
-        newEmail.getChildren().addAll(labelNewEmail, inputNewEmail);
-
-        //SAVE BUTTON
-        Button saveEmployee = new Button("Update");
-
-        //BUTTON ON ACTION -> SAVES INPUTTED USER IN DATABASE
+        newEmail.getChildren().addAll(labelNewEmail, inputNewEmail);        
+//SAVE BUTTON
+        Button saveEmployee = new Button("Update");        
+//BUTTON ON ACTION -> SAVES INPUTTED USER IN DATABASE
         saveEmployee.setOnAction((event2) -> {
             try {
                 Connection conn = DatabaseConnection.getConnection();
@@ -94,8 +81,8 @@ public class UpdateCursist {
                 ex.printStackTrace();
             }
         }
-        );
-           //HOMEBUTTON
+        );           
+//HOMEBUTTON
           Button backButton = new Button("Back to Home Screen");
         
         backButton.setOnAction((event -> {
@@ -103,10 +90,8 @@ public class UpdateCursist {
             Stage thisStage = (Stage) node.getScene().getWindow();
             InterfaceGUI gui = new InterfaceGUI();
             gui.start(thisStage);
-        }));
-
-
-        //ADD ALL TO VBOX
+        }));        
+//ADD ALL TO VBOX
         vertBox.getChildren()
                 .addAll(createEmp, underMessage, email, newEmail, saveEmployee, backButton);
 

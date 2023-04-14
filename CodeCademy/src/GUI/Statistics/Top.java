@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI.Statistics;
 
 import DatabaseConnection.DatabaseConnection;
@@ -23,10 +18,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Ordinary
- */
 public class Top {
 
     public Top() {
@@ -42,8 +33,7 @@ public class Top {
         vertBox.setAlignment(Pos.TOP_CENTER);
 
         layout.setCenter(vertBox);
-
-        //TOP TITLE
+//TITLE
         Text welcome = new Text("Statistics:");
         welcome.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
         Text underMessage = new Text("See the statistics below.");
@@ -55,7 +45,6 @@ public class Top {
         HBox topGender = new HBox(10);
         topGender.setAlignment(Pos.CENTER);
         topGender.setPadding(new Insets(20, 85, 0, 20));
-
 //WEBCAST
         VBox vboxWebcast = new VBox();
 
@@ -85,7 +74,6 @@ public class Top {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
 //COURSE
         VBox vboxCourse = new VBox();
 
@@ -115,8 +103,7 @@ public class Top {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
-        //FEMALE
+//FEMALE
         VBox vboxFemale = new VBox();
 
         vboxFemale.setPadding(new Insets(20, 70, 0, 20));
@@ -136,11 +123,8 @@ public class Top {
                     + "Where c.Gender = 'f'\n"
                     + "GROUP BY c.Gender, r.CourseName\n"
                     + "ORDER BY Finished DESC;";
-            
-            
 
             ResultSet rs = stmt.executeQuery(SQL);
-
 
             String femaleStr = "";
             while (rs.next()) {
@@ -166,7 +150,6 @@ public class Top {
             ex.printStackTrace();
         }
 //MALE
-        //FEMALE    
         VBox vboxMale = new VBox();
 
         vboxMale.setPadding(new Insets(20, 20, 0, 20));
@@ -189,7 +172,6 @@ public class Top {
 
             ResultSet rs = stmt.executeQuery(SQL);
 
-
             String maleStr = "";
             while (rs.next()) {
                 int iFinished = rs.getInt("Finished");
@@ -198,7 +180,7 @@ public class Top {
                 if (iFinished > 0) {
                     float percentage = (float) iFinished / iAll * 100;
                     String result = rs.getString("CourseName") + " - " + String.format(iFinished + "/" + iAll + " (%.02f", percentage) + "%)\n";
-                  maleStr += result;
+                    maleStr += result;
                 }
             }
 
@@ -213,22 +195,19 @@ public class Top {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+//HOMEBUTTON
+        Button backButton = new Button("Back to Home Screen");
 
-           //HOMEBUTTON
-          Button backButton = new Button("Back to Home Screen");
-        
         backButton.setOnAction((event -> {
             Node node = (Node) event.getSource();
             Stage thisStage = (Stage) node.getScene().getWindow();
             InterfaceGUI gui = new InterfaceGUI();
             gui.start(thisStage);
         }));
-
-        //ADDING TO VBOX
+//ADDING TO VBOX
         topBoth.getChildren().addAll(vboxWebcast, vboxCourse);
         topGender.getChildren().addAll(vboxFemale, vboxMale);
 
-        
         vboxCourse.getChildren().addAll(labelCourse, infoCourse);
         vboxWebcast.getChildren().addAll(labelWebcast, infoWebcast);
         vboxFemale.getChildren().addAll(labelFemale, infoFemale);

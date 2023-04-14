@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI.Registrations;
 
-import Curriculum.Course;
 import DatabaseConnection.DatabaseConnection;
 import GUI.InterfaceGUI;
-import Papers.Registration;
-import People.Cursist;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -43,25 +34,22 @@ public class CreateRegistration {
         vertBox.setAlignment(Pos.TOP_CENTER);
 
         layout.setCenter(vertBox);
-
+//TITLE
         Text createCur = new Text("Create a registration");
         createCur.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
 //ALL INPUT FIELDS ARE BELOW HERE
         Insets inputInset = new Insets(0, 20, 0, 20);
-
-        //INPUT FIELDS EMAIL
+//INPUT FIELDS EMAIL
         HBox email = new HBox(10);
         email.setPadding(inputInset);
         email.setAlignment(Pos.CENTER);
 
         Label labelEmail = new Label("Email: ");
         labelEmail.setFont(Font.font("verdana", FontWeight.BOLD, 14));
-//        TextField inputEmail = new TextField();
         ComboBox emailMenu = new ComboBox();
         emailMenu.setPromptText("Email");
 
         emailMenu.setPrefSize(150, 30);
-
 //SQL CODE FOR MENU
         try {
             String query = "SELECT Email FROM Cursist";
@@ -76,8 +64,7 @@ public class CreateRegistration {
             }
         } catch (SQLException ex) {
         }
-
-        //INPUT FIELDS COURSE
+//INPUT FIELDS COURSE
         HBox course = new HBox(10);
         course.setPadding(inputInset);
         course.setAlignment(Pos.CENTER);
@@ -116,19 +103,16 @@ public class CreateRegistration {
         labelDate.setTranslateX(-28);
         DatePicker datePicker = new DatePicker();
         datePicker.setTranslateX(-10);
-
-        //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
+//ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
         email.getChildren().addAll(labelEmail, emailMenu);
         course.getChildren().addAll(labelCourse, coursesMenu);
         date.getChildren().addAll(labelDate, datePicker);
-
 //SAVE BUTTON
         Button addRegistration = new Button("Create");
 
         addRegistration.setOnAction((event2) -> {
             try {
                 Connection conn = DatabaseConnection.getConnection();
-               
 
                 Statement stmt = conn.createStatement();
                 String SQL = "INSERT INTO Registration VALUES('" + datePicker.getValue() + "', '" + emailMenu.getValue() + "', '" + coursesMenu.getValue() + "', NULL)";
@@ -143,18 +127,16 @@ public class CreateRegistration {
             }
 
         });
-           //HOMEBUTTON
-          Button backButton = new Button("Back to Home Screen");
-        
+//HOMEBUTTON
+        Button backButton = new Button("Back to Home Screen");
+
         backButton.setOnAction((event -> {
             Node node = (Node) event.getSource();
             Stage thisStage = (Stage) node.getScene().getWindow();
             InterfaceGUI gui = new InterfaceGUI();
             gui.start(thisStage);
         }));
-
-
-        //ADD ALL TO VBOX
+//ADD ALL TO VBOX
         vertBox.getChildren()
                 .addAll(createCur, email, course, date, addRegistration, backButton);
 

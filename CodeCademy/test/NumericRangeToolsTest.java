@@ -1,9 +1,3 @@
-//Deze Unittest is niet gebruikt, aangezien wij binnen de app spinners gebruiken die maar een input heeft tussen 1-10
-//
-//
-//
-//
-//
 //import org.junit.Test;
 //import static org.junit.Assert.*;
 //

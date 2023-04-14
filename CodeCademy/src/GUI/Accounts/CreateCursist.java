@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI.Accounts;
 
 import java.sql.*;
@@ -12,10 +7,9 @@ import People.Cursist;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
+
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -31,10 +25,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Ordinary
- */
 public class CreateCursist {
 
     public CreateCursist() {
@@ -49,13 +39,12 @@ public class CreateCursist {
         vertBox.setAlignment(Pos.TOP_CENTER);
 
         layout.setCenter(vertBox);
-
+//TITLE
         Text createCur = new Text("Create a cursist");
         createCur.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
 //ALL INPUT FIELDS ARE BELOW HERE
         Insets inputInset = new Insets(0, 20, 0, 20);
-
-        //INPUT FIELDS NAME
+//INPUT FIELDS NAME
         HBox name = new HBox(10);
         name.setPadding(new Insets(20, 20, 0, 20));
         name.setAlignment(Pos.CENTER);
@@ -63,8 +52,7 @@ public class CreateCursist {
         Label labelName = new Label("Name: ");
         labelName.setFont(Font.font("verdana", FontWeight.BOLD, 14));
         TextField inputName = new TextField();
-
-        //INPUT FIELDS EMAIL
+//INPUT FIELDS EMAIL
         HBox email = new HBox(10);
         email.setPadding(inputInset);
         email.setAlignment(Pos.CENTER);
@@ -72,8 +60,7 @@ public class CreateCursist {
         Label labelEmail = new Label("Email: ");
         labelEmail.setFont(Font.font("verdana", FontWeight.BOLD, 14));
         TextField inputEmail = new TextField();
-
-        //INPUT FIELDS DOB
+//INPUT FIELDS DateOfBirth (DOB)
         HBox DOB = new HBox(10);
         DOB.setPadding(inputInset);
         DOB.setAlignment(Pos.CENTER);
@@ -82,8 +69,7 @@ public class CreateCursist {
         Label labelDOB = new Label("Date of birth:");
         labelDOB.setFont(Font.font("verdana", FontWeight.BOLD, 14));
         DatePicker datePicker = new DatePicker();
-
-        //INPUT GENDER
+//INPUT GENDER
         HBox gender = new HBox(10);
         gender.setTranslateX(-19);
         gender.setPadding(inputInset);
@@ -99,9 +85,8 @@ public class CreateCursist {
 
         Label labelGender = new Label("Gender:");
         labelGender.setFont(Font.font("verdana", FontWeight.BOLD, 14));
-
-        //INPUT STREET, POSTAL, CITY, COUNTRY
-        //STREET
+//INPUT STREET, POSTAL, CITY, COUNTRY
+//STREET
         HBox street = new HBox(10);
         street.setTranslateX(1);
         street.setPadding(inputInset);
@@ -110,8 +95,7 @@ public class CreateCursist {
         labelStreet.setFont(Font.font("verdana", FontWeight.BOLD, 14));
 
         TextField inputStreet = new TextField();
-
-        //POSTAL
+//POSTAL
         HBox postal = new HBox(10);
         postal.setTranslateX(-21);
         postal.setPadding(inputInset);
@@ -121,8 +105,7 @@ public class CreateCursist {
         labelPostal.setFont(Font.font("verdana", FontWeight.BOLD, 14));
 
         TextField inputPostal = new TextField();
-
-        //CITY
+//CITY
         HBox city = new HBox(10);
         city.setTranslateX(10);
         city.setPadding(inputInset);
@@ -132,8 +115,7 @@ public class CreateCursist {
         labelCity.setFont(Font.font("verdana", FontWeight.BOLD, 14));
 
         TextField inputCity = new TextField();
-
-        //COUNTRY
+//COUNTRY
         HBox country = new HBox(10);
         country.setTranslateX(-6);
         country.setPadding(inputInset);
@@ -143,8 +125,7 @@ public class CreateCursist {
         labelCountry.setFont(Font.font("verdana", FontWeight.BOLD, 14));
 
         TextField inputCountry = new TextField();
-
-        //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
+//ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
         name.getChildren().addAll(labelName, inputName);
         email.getChildren().addAll(labelEmail, inputEmail);
         DOB.getChildren().addAll(labelDOB, datePicker);
@@ -153,7 +134,6 @@ public class CreateCursist {
         postal.getChildren().addAll(labelPostal, inputPostal);
         city.getChildren().addAll(labelCity, inputCity);
         country.getChildren().addAll(labelCountry, inputCountry);
-
 //SAVE BUTTON
         Button saveCursist = new Button("Save");
 
@@ -162,7 +142,7 @@ public class CreateCursist {
                 Connection conn = DatabaseConnection.getConnection();
 
                 char genderChar = 0;
-
+                //CHECK GENDER
                 if (femaleGender.isSelected()) {
                     genderChar = 'f';
                 } else {
@@ -180,9 +160,9 @@ public class CreateCursist {
             }
 
         });
-        //HOME BUTTON
+//HOME BUTTON
         Button backButton = new Button("Back to Home Screen");
-        
+
         backButton.setOnAction((event -> {
             Node node = (Node) event.getSource();
             Stage thisStage = (Stage) node.getScene().getWindow();

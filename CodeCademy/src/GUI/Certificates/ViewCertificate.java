@@ -3,22 +3,14 @@ package GUI.Certificates;
 import DatabaseConnection.DatabaseConnection;
 import GUI.InterfaceGUI;
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
-
-import javafx.collections.ObservableArray;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -29,28 +21,25 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class ViewCertificate {
+
     ArrayList<String> certificates = new ArrayList<>();
     ComboBox certificateBox = new ComboBox<>();
 
     public ViewCertificate() {
     }
 
-    /**
-     * @author WorldWideErrors
-     */
     public Parent getView() {
-        
+//SQL
         try {
             Connection conn = DatabaseConnection.getConnection();
 
             Statement stmt = conn.createStatement();
             String SQL = "SELECT * FROM CERTIFICATE";
             ResultSet rs = stmt.executeQuery(SQL);
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 certificateBox.getItems().addAll(rs.getString("CertificateID"));
             }
-
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -66,40 +55,34 @@ public class ViewCertificate {
 
         layout.setCenter(vertBox);
         Insets inputInset = new Insets(0, 20, 0, 20);
-
+//TITLE
         Text getCertificateText = new Text("View a certificate");
-        getCertificateText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
-
-        //SAVE BUTTON
-        Button viewCertificate = new Button("View");
-
-        //BUTTON ON ACTION -> VIEWS INPUTTED COURSE FROM DATABASE
+        getCertificateText.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));        
+//SAVE BUTTON
+        Button viewCertificate = new Button("View");        
+//BUTTON ON ACTION -> VIEWS INPUTTED COURSE FROM DATABASE
         viewCertificate.setOnAction((event2) -> {
             try {
                 Connection conn = DatabaseConnection.getConnection();
 
                 Statement stmt = conn.createStatement();
                 String SQL = "SELECT * FROM CERTIFICATE WHERE CertificateID = '" + certificateBox.getValue().toString() + "'";
-                ResultSet rs = stmt.executeQuery(SQL);
-
-                //ATTRIBUTES AND VALUES
+                ResultSet rs = stmt.executeQuery(SQL);                
+//ATTRIBUTES AND VALUES
                 while (rs.next()) {
                     String IDString = rs.getString("CertificateID");
                     String gradeString = rs.getString("Grade");
-                    String reviewerString = rs.getString("ReviewerEmail");
-
-                    //VIEW AFTER PRESSING BUTTON
+                    String reviewerString = rs.getString("ReviewerEmail");                    
+//VIEW AFTER PRESSING BUTTON
                     vertBox.getChildren().removeAll(getCertificateText, certificateBox, viewCertificate);
 
                     Text courseInfo = new Text("Certificate information:");
-                    courseInfo.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
-
-                    //INPUT FIELDS NAME
+                    courseInfo.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));                    
+//INPUT FIELDS NAME
                     HBox name = new HBox(10);
                     name.setPadding(new Insets(20, 20, 0, 20));
-                    name.setAlignment(Pos.CENTER);
-
-                    //COURSENAME
+                    name.setAlignment(Pos.CENTER);                    
+//COURSENAME
                     HBox certificateID = new HBox(10);
                     certificateID.setPadding(inputInset);
                     certificateID.setAlignment(Pos.CENTER);
@@ -107,9 +90,8 @@ public class ViewCertificate {
                     Label labelID = new Label("Certificate ID:");
                     labelID.setFont(Font.font("verdana", FontWeight.BOLD, 14));
 
-                    Label infoID = new Label(IDString);
-
-                    // DESCRIPTION
+                    Label infoID = new Label(IDString);                    
+//DESCRIPTION
                     HBox certificateGrade = new HBox(10);
 
                     Label labelGrade = new Label("Grade: ");
@@ -117,9 +99,8 @@ public class ViewCertificate {
 
                     certificateGrade.setPadding(inputInset);
                     certificateGrade.setAlignment(Pos.CENTER);
-                    Label infoGrade = new Label(gradeString);
-
-                    // LEVEL
+                    Label infoGrade = new Label(gradeString);                    
+//LEVEL
                     HBox certificateReviewer = new HBox(10);
 
                     Label labelReviewer = new Label("Reviewer: ");
@@ -127,10 +108,8 @@ public class ViewCertificate {
 
                     certificateReviewer.setPadding(inputInset);
                     certificateReviewer.setAlignment(Pos.CENTER);
-                    Label infoReviewer = new Label(reviewerString);
-                    
-                    //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
-                    
+                    Label infoReviewer = new Label(reviewerString);                    
+//ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
                     certificateID.getChildren().addAll(labelID, infoID);
                     certificateGrade.getChildren().addAll(labelGrade, infoGrade);
                     certificateReviewer.getChildren().addAll(labelReviewer, infoReviewer);
@@ -144,20 +123,17 @@ public class ViewCertificate {
             }
 
         }
-        );
-        
-           //HOMEBUTTON
-          Button backButton = new Button("Back to Home Screen");
-        
+        );        
+//HOMEBUTTON
+        Button backButton = new Button("Back to Home Screen");
+
         backButton.setOnAction((event -> {
             Node node = (Node) event.getSource();
             Stage thisStage = (Stage) node.getScene().getWindow();
             InterfaceGUI gui = new InterfaceGUI();
             gui.start(thisStage);
-        }));
-
-
-        //ADD ALL TO VBOX
+        }));        
+//ADD ALL TO VBOX
         vertBox.getChildren()
                 .addAll(getCertificateText, certificateBox, viewCertificate, backButton);
 

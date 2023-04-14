@@ -38,13 +38,12 @@ public class ViewRegistration {
 
         layout.setCenter(vertBox);
         Insets inputInset = new Insets(0, 20, 0, 20);
-
+//TITLE
         Text createEmp = new Text("View a registration");
         createEmp.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
         Text underMessage = new Text("Who's registrations do you want to see?.");
         underMessage.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
-
-        //INPUT FIELDS EMAIL
+//INPUT FIELDS EMAIL
         HBox email = new HBox(10);
         email.setPadding(new Insets(0, 20, 20, 20));
         email.setAlignment(Pos.CENTER);
@@ -54,7 +53,6 @@ public class ViewRegistration {
         emailMenu.setPromptText("Email");
 
         emailMenu.setPrefSize(150, 30);
-
 //SQL CODE FOR MENU
         try {
             String query = "SELECT Email FROM Cursist";
@@ -69,14 +67,11 @@ public class ViewRegistration {
             }
         } catch (SQLException ex) {
         }
-
-        //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
+//ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
         email.getChildren().addAll(labelEmail, emailMenu);
-
-        //SAVE BUTTON
+//SAVE BUTTON
         Button viewRegistration = new Button("View");
-
-        //BUTTON ON ACTION -> VIEWS INPUTTED USER FROM DATABASE
+//BUTTON ON ACTION -> VIEWS INPUTTED USER FROM DATABASE
         viewRegistration.setOnAction((event2) -> {
             try {
                 Connection conn = DatabaseConnection.getConnection();
@@ -84,17 +79,11 @@ public class ViewRegistration {
                 Statement stmt = conn.createStatement();
                 String SQL = "SELECT RegistrationDate, CourseName FROM Registration WHERE CursistEmail = '" + emailMenu.getValue() + "'";
                 ResultSet rs = stmt.executeQuery(SQL);
-
-                //ATTRIBUTES AND VALUES
-                // Remove all children from the vertBox container
+//ATTRIBUTES AND VALUES
                 vertBox.getChildren().removeAll(createEmp, underMessage, email, viewRegistration);
-
-// Add the "Registrations:" text to the vertBox container
                 Text cursistInfo = new Text("Registrations:");
                 cursistInfo.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
                 vertBox.getChildren().add(cursistInfo);
-
-// Loop through the result set and add the courses and dates to the vertBox container
                 while (rs.next()) {
                     String courses = rs.getString("CourseName");
                     String date = rs.getString("RegistrationDate");
@@ -112,18 +101,16 @@ public class ViewRegistration {
 
         }
         );
+//HOMEBUTTON
+        Button backButton = new Button("Back to Home Screen");
 
-           //HOMEBUTTON
-          Button backButton = new Button("Back to Home Screen");
-        
         backButton.setOnAction((event -> {
             Node node = (Node) event.getSource();
             Stage thisStage = (Stage) node.getScene().getWindow();
             InterfaceGUI gui = new InterfaceGUI();
             gui.start(thisStage);
         }));
-
-        //ADD ALL TO VBOX
+//ADD ALL TO VBOX
         vertBox.getChildren()
                 .addAll(createEmp, underMessage, email, viewRegistration, backButton);
 

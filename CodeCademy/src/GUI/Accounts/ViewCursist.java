@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package GUI.Accounts;
 
 import DatabaseConnection.DatabaseConnection;
@@ -15,11 +10,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -29,10 +20,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-/**
- *
- * @author Ordinary
- */
 public class ViewCursist {
 
     public ViewCursist() {
@@ -48,13 +35,12 @@ public class ViewCursist {
 
         layout.setCenter(vertBox);
         Insets inputInset = new Insets(0, 20, 0, 20);
-
+//TITLE
         Text createEmp = new Text("View a cursist");
         createEmp.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
         Text underMessage = new Text("Input the email of the cursist you want to view.");
         underMessage.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
-
-        //INPUT FIELDS EMAIL
+//INPUT FIELDS EMAIL
         HBox email = new HBox(10);
         email.setPadding(new Insets(0, 20, 20, 20));
         email.setAlignment(Pos.CENTER);
@@ -64,7 +50,6 @@ public class ViewCursist {
         emailMenu.setPromptText("Email");
 
         emailMenu.setPrefSize(150, 30);
-
 //SQL CODE FOR MENU
         try {
             String query = "SELECT Email FROM Cursist";
@@ -79,22 +64,18 @@ public class ViewCursist {
             }
         } catch (SQLException ex) {
         }
-
-        //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
+//ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
         email.getChildren().addAll(labelEmail, emailMenu);
-
-        //SAVE BUTTON
+//SAVE BUTTON
         Button viewEmployee = new Button("View");
-
-        //BUTTON ON ACTION -> VIEWS INPUTTED USER FROM DATABASE
+//BUTTON ON ACTION -> VIEWS INPUTTED USER FROM DATABASE
         viewEmployee.setOnAction((event2) -> {
             try {
                 Connection conn = DatabaseConnection.getConnection();
                 Statement stmt = conn.createStatement();
                 String SQL = "SELECT * FROM CURSIST WHERE Email = '" + emailMenu.getValue() + "'";
                 ResultSet rs = stmt.executeQuery(SQL);
-
-                //ATTRIBUTES AND VALUES
+//ATTRIBUTES AND VALUES
                 while (rs.next()) {
                     String nameStr = rs.getString("Name");
                     String emailStr = rs.getString("Email");
@@ -104,15 +85,12 @@ public class ViewCursist {
                     String postalStr = rs.getString("PostalCode");
                     String cityStr = rs.getString("City");
                     String countryStr = rs.getString("Country");
-
-                    //VIEW AFTER PRESSING BUTTON
+//VIEW AFTER PRESSING BUTTON
                     vertBox.getChildren().removeAll(createEmp, underMessage, email, viewEmployee);
 
                     Text cursistInfo = new Text("Cursist information:");
                     cursistInfo.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 35));
-//FONT
-
-                    //INPUT FIELDS NAME
+//INPUT FIELDS NAME
                     HBox name = new HBox(10);
                     name.setPadding(new Insets(20, 20, 0, 20));
                     name.setAlignment(Pos.CENTER);
@@ -121,7 +99,7 @@ public class ViewCursist {
                     labelName.setFont(Font.font("verdana", FontWeight.BOLD, 14));
                     Label infoName = new Label(nameStr);
                     infoName.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, 14));
-                    //INPUT FIELDS EMAIL
+//INPUT FIELDS EMAIL
                     HBox email2 = new HBox(10);
                     email2.setPadding(inputInset);
                     email2.setAlignment(Pos.CENTER);
@@ -130,7 +108,7 @@ public class ViewCursist {
                     labelEmail2.setFont(Font.font("verdana", FontWeight.BOLD, 14));
                     Label infoEmail = new Label(emailStr);
                     infoEmail.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, 14));
-                    //INPUT FIELDS DOB
+//INPUT FIELDS DOB
                     HBox DOB = new HBox(10);
                     DOB.setPadding(inputInset);
                     DOB.setAlignment(Pos.CENTER);
@@ -140,8 +118,7 @@ public class ViewCursist {
                     labelDOB.setFont(Font.font("verdana", FontWeight.BOLD, 14));
                     Label infoDOB = new Label(dobStr);
                     infoDOB.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, 14));
-
-                    //INPUT GENDER
+//INPUT GENDER
                     HBox gender = new HBox(10);
                     gender.setPadding(inputInset);
                     gender.setAlignment(Pos.CENTER);
@@ -151,8 +128,8 @@ public class ViewCursist {
 
                     Label infoGender = new Label(genderStr);
                     infoGender.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, 14));
-                    //INPUT STREET, POSTAL, CITY, COUNTRY
-                    //STREET
+//INPUT STREET, POSTAL, CITY, COUNTRY                    
+//STREET
                     HBox street = new HBox(10);
                     street.setPadding(inputInset);
                     street.setAlignment(Pos.CENTER);
@@ -161,7 +138,7 @@ public class ViewCursist {
 
                     Label infoStreet = new Label(streetStr);
                     infoStreet.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, 14));
-                    //POSTAL
+//POSTAL
                     HBox postal = new HBox(10);
                     postal.setPadding(inputInset);
                     postal.setAlignment(Pos.CENTER);
@@ -171,7 +148,7 @@ public class ViewCursist {
 
                     Label infoPostal = new Label(postalStr);
                     infoPostal.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, 14));
-                    //CITY
+//CITY
                     HBox city = new HBox(10);
                     city.setPadding(inputInset);
                     city.setAlignment(Pos.CENTER);
@@ -181,7 +158,7 @@ public class ViewCursist {
 
                     Label infoCity = new Label(cityStr);
                     infoCity.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, 14));
-                    //COUNTRY
+//COUNTRY
                     HBox country = new HBox(10);
                     country.setPadding(inputInset);
                     country.setAlignment(Pos.CENTER);
@@ -191,9 +168,7 @@ public class ViewCursist {
 
                     Label infoCountry = new Label(countryStr);
                     infoCountry.setFont(Font.font("verdana", FontWeight.SEMI_BOLD, 14));
-
-                    /// ----
-                    //CERTIFICATES
+//CERTIFICATES
                     VBox certificates = new VBox(10);
                     certificates.setPadding(inputInset);
                     certificates.setAlignment(Pos.CENTER);
@@ -202,14 +177,13 @@ public class ViewCursist {
                     labelCertificates.setFont(Font.font("verdana", FontWeight.BOLD, 14));
 
                     Label infoCertificates = new Label();
-                    //SQL CODE FOR CERTIFICATES
+//SQL CODE FOR CERTIFICATES
                     try {
                         Connection conn2 = DatabaseConnection.getConnection();
                         Statement stmt2 = conn2.createStatement();
                         String SQL2 = "SELECT CertificateId, CourseName FROM Registration WHERE CursistEmail = '" + emailMenu.getValue() + "'";
                         ResultSet rs2 = stmt2.executeQuery(SQL2);
-
-                        //ATTRIBUTES AND VALUES
+//ATTRIBUTES AND VALUES
                         String certificateStr = "";
                         while (rs2.next()) {
                             if (rs2.getString("CertificateId") != null) {
@@ -223,8 +197,7 @@ public class ViewCursist {
                     } catch (SQLException ex) {
 
                     }
-
-                    //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
+//ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
                     name.getChildren().addAll(labelName, infoName);
                     email2.getChildren().addAll(labelEmail2, infoEmail);
                     DOB.getChildren().addAll(labelDOB, infoDOB);
@@ -245,19 +218,16 @@ public class ViewCursist {
 
         }
         );
-        
-        //HOMEBUTTON
-          Button backButton = new Button("Back to Home Screen");
-        
+//HOMEBUTTON
+        Button backButton = new Button("Back to Home Screen");
+
         backButton.setOnAction((event -> {
             Node node = (Node) event.getSource();
             Stage thisStage = (Stage) node.getScene().getWindow();
             InterfaceGUI gui = new InterfaceGUI();
             gui.start(thisStage);
         }));
-
-
-        //ADD ALL TO VBOX
+//ADD ALL TO VBOX
         vertBox.getChildren()
                 .addAll(createEmp, underMessage, email, viewEmployee, backButton);
 

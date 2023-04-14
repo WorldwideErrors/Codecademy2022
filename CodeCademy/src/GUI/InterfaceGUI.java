@@ -1,5 +1,6 @@
 package GUI;
 
+//IMPORT CLASSES
 import GUI.Accounts.CreateCursist;
 import GUI.Accounts.DeleteCursist;
 import GUI.Accounts.UpdateCursist;
@@ -12,12 +13,12 @@ import GUI.Courses.CreateCourse;
 import GUI.Courses.DeleteCourse;
 import GUI.Courses.ViewCourse;
 import GUI.Courses.updateCourse;
-
 import GUI.Registrations.CreateRegistration;
 import GUI.Registrations.DeleteRegistration;
 import GUI.Registrations.UpdateRegistration;
 import GUI.Registrations.ViewRegistration;
 import GUI.Statistics.Top;
+//IMPORT OTHERS
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -60,10 +61,10 @@ public class InterfaceGUI extends Application {
         UpdateCertificate updateCertificateView = new UpdateCertificate();
 //STATISTIC VIEWS
         Top topView = new Top();
-        //WELCOME SCENE
-        BorderPane mainPane = new BorderPane();
 
-        //TOP WELCOME MESSAGE
+//WELCOME SCENE
+        BorderPane mainPane = new BorderPane();
+//TOP WELCOME MESSAGE
         VBox Welcome = new VBox();
         Welcome.setAlignment(Pos.TOP_CENTER);
         Text welcomeMessage = new Text("CodeCademy");
@@ -72,11 +73,9 @@ public class InterfaceGUI extends Application {
         underMessage.setFont(Font.font("verdana", FontWeight.NORMAL, FontPosture.ITALIC, 12));
         Welcome.getChildren().addAll(welcomeMessage, underMessage);
 
-        //IDK
         BorderPane centerView = new BorderPane();
         mainPane.setPadding(new Insets(20, 20, 20, 20));
         centerView.setPadding(new Insets(20, 20, 20, 20));
-
 //DROPDOWN ACCOUNT
         MenuItem create = new MenuItem("Create Cursist");
         MenuItem view = new MenuItem("View Cursist");
@@ -113,7 +112,6 @@ public class InterfaceGUI extends Application {
 
         certificateMenu.setTranslateX(90);
         certificateMenu.setPrefSize(104, 30);
-
 //DROPDOWN STATISTICS
         MenuItem viewTop = new MenuItem("View Statistics");
         MenuButton statMenu = new MenuButton("Statistics", null, viewTop);
@@ -122,10 +120,7 @@ public class InterfaceGUI extends Application {
 //HBOX FOR MENUBUTTON
         HBox center = new HBox(5);
         center.getChildren().addAll(cursistMenu, courseMenu, registrationMenu, certificateMenu, statMenu);
-
-//CENTER FOR PLACING THE MENUBUTTON
         centerView.setCenter(center);
-
 //SET ON ACTION CURSIST
         create.setOnAction((event) -> {
             Scene accountScene = new Scene(cursistCreateView.getView());
@@ -146,7 +141,7 @@ public class InterfaceGUI extends Application {
             Scene accountDeleteScene = new Scene(cursistDeleteView.getView());
             stage.setScene(accountDeleteScene);
         });
-        //SET ON ACTION COURSE
+//SET ON ACTION COURSE
         createC.setOnAction((eventC) -> {
             Scene createCourseScene = new Scene(courseCreateView.getView());
             stage.setScene(createCourseScene);
@@ -166,7 +161,7 @@ public class InterfaceGUI extends Application {
             Scene courseDeleteScene = new Scene(courseDeleteView.getView());
             stage.setScene(courseDeleteScene);
         });
-        //SET ON ACTION REGISTRATION   
+//SET ON ACTION REGISTRATION   
         createR.setOnAction((eventR) -> {
             Scene createRegistrationScene = new Scene(createRegistrationView.getView());
             stage.setScene(createRegistrationScene);
@@ -186,7 +181,7 @@ public class InterfaceGUI extends Application {
             Scene deleteRegistrationScene = new Scene(deleteRegistrationView.getView());
             stage.setScene(deleteRegistrationScene);
         });
-        //SET ON ACTION CERTIFICATE
+//SET ON ACTION CERTIFICATE
         createCR.setOnAction((eventCR) -> {
             Scene createCertificateScene = new Scene(createCertificateView.getView());
             stage.setScene(createCertificateScene);
@@ -206,22 +201,21 @@ public class InterfaceGUI extends Application {
             Scene deleteCertificateScene = new Scene(deleteCertificateView.getView());
             stage.setScene(deleteCertificateScene);
         });
-        //SET ON ACTION STATISTICS
+//SET ON ACTION STATISTICS
         viewTop.setOnAction((eventVT) -> {
             Scene viewTopScene = new Scene(topView.getView());
             stage.setScene(viewTopScene);
         });
-        //OTHER
+//OTHER
         mainPane.setTop(Welcome);
         mainPane.setCenter(centerView);
 
-        //SCENE
+//SCENE
         Scene scene = new Scene(mainPane, 800, 500);
 
-        //STAGE 
+//STAGE 
         stage.setTitle("CodeCademy");
         stage.setScene(scene);
         stage.show();
     }
-
 }
