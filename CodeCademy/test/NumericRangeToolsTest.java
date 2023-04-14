@@ -1,4 +1,4 @@
-//Deze Unittest is niet gebruikt, aangezien wij binnen de app een spinner gebruiken
+//Deze Unittest is niet gebruikt, aangezien wij binnen de app spinners gebruiken die maar een input heeft tussen 1-10
 //
 //
 //
