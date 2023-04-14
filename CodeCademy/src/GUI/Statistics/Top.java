@@ -50,7 +50,7 @@ public class Top {
         topBoth.setPadding(new Insets(20, 20, 0, 20));
         HBox topGender = new HBox(10);
         topGender.setAlignment(Pos.CENTER);
-        topGender.setPadding(new Insets(20, 20, 0, 20));
+        topGender.setPadding(new Insets(20, 85, 0, 20));
 
 //WEBCAST
         VBox vboxWebcast = new VBox();
@@ -115,7 +115,7 @@ public class Top {
         //FEMALE
         VBox vboxFemale = new VBox();
 
-        vboxCourse.setPadding(new Insets(20, 20, 0, 20));
+        vboxFemale.setPadding(new Insets(20, 70, 0, 20));
         Label labelFemale = new Label("Top 3 finished courses - Female:");
         labelFemale.setFont(Font.font("verdana", FontWeight.BOLD, 14));
         Label infoFemale = new Label("1234");
@@ -125,13 +125,15 @@ public class Top {
             Statement stmt = conn.createStatement();
 
             String SQL = "SELECT TOP 3  r.CourseName, c.Gender,\n"
-                    + "    SUM(CASE WHEN r.CertificateID IS NOT NULL THEN 1 ELSE 0 END) AS 'Finished', \n"
+                    + "    COUNT(r.CertificateID) AS 'Finished', \n"
                     + "    COUNT(r.CursistEmail) AS 'ALL' \n"
                     + "FROM Registration r \n"
                     + "INNER JOIN Cursist c ON r.CursistEmail = c.Email\n"
                     + "Where c.Gender = 'f'\n"
                     + "GROUP BY c.Gender, r.CourseName\n"
                     + "ORDER BY Finished DESC;";
+            
+            
 
             ResultSet rs = stmt.executeQuery(SQL);
 
@@ -160,10 +162,10 @@ public class Top {
             ex.printStackTrace();
         }
 //MALE
-        //FEMALE
+        //FEMALE    
         VBox vboxMale = new VBox();
 
-        vboxCourse.setPadding(new Insets(20, 20, 0, 20));
+        vboxMale.setPadding(new Insets(20, 20, 0, 20));
         Label labelMale = new Label("Top 3 finished courses - Male:");
         labelMale.setFont(Font.font("verdana", FontWeight.BOLD, 14));
         Label infoMale = new Label("1234");
@@ -173,7 +175,7 @@ public class Top {
             Statement stmt = conn.createStatement();
 
             String SQL = "SELECT TOP 3  r.CourseName, c.Gender,\n"
-                    + "    SUM(CASE WHEN r.CertificateID IS NOT NULL THEN 1 ELSE 0 END) AS 'Finished', \n"
+                    + "    COUNT(r.CertificateID) AS 'Finished', \n"
                     + "    COUNT(r.CursistEmail) AS 'ALL' \n"
                     + "FROM Registration r \n"
                     + "INNER JOIN Cursist c ON r.CursistEmail = c.Email\n"

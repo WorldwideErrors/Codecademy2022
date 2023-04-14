@@ -52,7 +52,7 @@ public class UpdateCursist {
 
         //INPUT FIELDS EMAIL
         HBox email = new HBox(10);
-        email.setPadding(new Insets(0, 20, 0, 20));
+        email.setPadding(new Insets(0, 51, 0, 20));
         email.setAlignment(Pos.CENTER);
 
         Label labelEmail = new Label("Old email: ");

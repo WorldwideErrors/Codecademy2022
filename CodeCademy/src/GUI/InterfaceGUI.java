@@ -115,7 +115,7 @@ public class InterfaceGUI extends Application {
         certificateMenu.setPrefSize(104, 30);
 
 //DROPDOWN STATISTICS
-        MenuItem viewTop = new MenuItem("View top items");
+        MenuItem viewTop = new MenuItem("View Statistics");
         MenuButton statMenu = new MenuButton("Statistics", null, viewTop);
         statMenu.setTranslateX(90);
         statMenu.setPrefSize(104, 30);

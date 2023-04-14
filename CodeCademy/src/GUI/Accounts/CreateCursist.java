@@ -5,6 +5,7 @@
  */
 package GUI.Accounts;
 
+
 import java.sql.*;
 import DatabaseConnection.DatabaseConnection;
 import GUI.InterfaceGUI;
@@ -178,19 +179,11 @@ public class CreateCursist {
 
         });
         //HOME BUTTON
-        
-        InterfaceGUI gui = new InterfaceGUI();
-        
-        Button home = new Button("Home");
-        home.setOnAction((event) -> {
-             Stage stage = (Stage) home.getScene().getWindow(); // get the current stage
-    stage.hide();
-        });
+        Button backButton = new Button("Back to Home Screen");
 
-
-        //ADD ALL TO VBOX
+//ADD ALL TO VBOX
         vertBox.getChildren()
-                .addAll(createCur, name, email, DOB, gender, street, postal, city, country, saveCursist, home);
+                .addAll(createCur, name, email, DOB, gender, street, postal, city, country, saveCursist, backButton);
 
         return layout;
     }
