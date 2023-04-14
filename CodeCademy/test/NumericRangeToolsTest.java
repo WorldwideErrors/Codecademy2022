@@ -1,3 +1,8 @@
+//Deze Unittest is niet gebruikt, aangezien wij binnen de app een spinner gebruiken
+//
+//
+//
+//
 //
 //import org.junit.Test;
 //import static org.junit.Assert.*;
