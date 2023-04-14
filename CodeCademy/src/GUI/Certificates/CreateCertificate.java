@@ -54,17 +54,81 @@ public Parent getView() {
 //ALL INPUT FIELDS ARE BELOW HERE
     Insets inputInset = new Insets(0, 20, 0, 20);
 
-    //INPUT FIELDS NAME
+    //INPUT FIELDS CERTIFICATEID
     HBox name = new HBox(10);
-    name.setPadding(new Insets(20, 20, 0, 20));
+    name.setPadding(new Insets(20, 40, 0, 20));
     name.setAlignment(Pos.CENTER);
     name.setTranslateX(-12.5);
 
-    Label labelName = new Label("CertificateID - For example: 1234");
+    Label labelName = new Label("CertificateID");
     labelName.setFont(Font.font("verdana", FontWeight.BOLD, 14));
     TextField inputID = new TextField();
+    
+        //INPUT FIELDS EMAIL
+        HBox email = new HBox(10);
+        email.setPadding(inputInset);
+        email.setAlignment(Pos.CENTER);
 
-    //INPUT FIELDS INTRODUCTIONTEXT
+        Label labelEmail = new Label("Email: ");
+        labelEmail.setFont(Font.font("verdana", FontWeight.BOLD, 14));
+//        TextField inputEmail = new TextField();
+        ComboBox emailMenu = new ComboBox();
+        emailMenu.setPromptText("Email");
+
+        emailMenu.setPrefSize(150, 30);
+
+//SQL CODE FOR MENU
+        try {
+            String query = "SELECT Email FROM Cursist";
+            Connection conn = DatabaseConnection.getConnection();
+            Statement stmt = conn.createStatement();
+
+            ResultSet rs = stmt.executeQuery(query);
+            while (rs.next()) {
+                String value = rs.getString("Email");
+
+                emailMenu.getItems().add(value);
+            }
+        } catch (SQLException ex) {
+        }
+
+        //INPUT FIELDS COURSE
+        HBox course = new HBox(10);
+        course.setPadding(inputInset);
+        course.setAlignment(Pos.CENTER);
+
+        course.setTranslateX(-12.5);
+        Label labelCourse = new Label("Course:");
+        labelCourse.setFont(Font.font("verdana", FontWeight.BOLD, 14));
+
+        ComboBox coursesMenu = new ComboBox();
+        coursesMenu.setPromptText("Courses");
+        coursesMenu.setTranslateX(10);
+        coursesMenu.setPrefSize(150, 30);
+//SQL CODE FOR MENU
+
+        emailMenu.setOnAction((event) -> {
+            String selectedItem = emailMenu.getSelectionModel().getSelectedItem().toString();
+            coursesMenu.getItems().clear();
+            try {
+                String query = "SELECT CourseName from Registration WHERE CursistEmail = '" + selectedItem + "' AND CertificateId IS NULL" ;
+                Connection conn = DatabaseConnection.getConnection();
+                Statement stmt = conn.createStatement();
+
+                ResultSet rs = stmt.executeQuery(query);
+                while (rs.next()) {
+                    String value = rs.getString("CourseName");
+
+                    coursesMenu.getItems().add(value);
+                }
+            } catch (SQLException ex) {
+            }
+
+        });
+
+        
+
+    //INPUT FIELDS Grade
     HBox gradeSpinner = new HBox(10);
     gradeSpinner.setPadding(inputInset);
     gradeSpinner.setAlignment(Pos.CENTER);
@@ -77,12 +141,12 @@ public Parent getView() {
     Label labelLevel = new Label("Level: ");
     labelLevel.setFont(Font.font("verdana", FontWeight.BOLD, 14));
 
-    //INPUT FIELDS INTRODUCTIONTEXT
+    //INPUT FIELDS ReviewerEmail
     HBox reviewer = new HBox(10);
     reviewer.setPadding(inputInset);
     reviewer.setAlignment(Pos.CENTER);
 
-    Label labelReviewer = new Label("Status: ");
+    Label labelReviewer = new Label("Reviewer: ");
     labelReviewer.setFont(Font.font("verdana", FontWeight.BOLD, 14));
     
     ComboBox reviewerBox = new ComboBox<>();
@@ -105,6 +169,8 @@ public Parent getView() {
 
     //ADD LABELS + TEXTFIELDS TO RESPECTIVE HBOX
     name.getChildren().addAll(labelName, inputID);
+    email.getChildren().addAll(labelEmail, emailMenu);
+    course.getChildren().addAll(labelCourse, coursesMenu);
     gradeSpinner.getChildren().addAll(labelInfo, gradSpinner);
     reviewer.getChildren().addAll(labelReviewer, reviewerBox);
 
@@ -116,7 +182,8 @@ public Parent getView() {
             Connection conn = DatabaseConnection.getConnection();
 
                 Statement stmt = conn.createStatement();
-                String SQL = "INSERT INTO Certificate VALUES ('" + inputID.getText() + "', '" + gradSpinner.getValue() + "', '" + reviewerBox.getValue() + "')";
+                String SQL = "INSERT INTO Certificate VALUES ('" + inputID.getText() + "', '" + gradSpinner.getValue() + "', '" + reviewerBox.getValue() + "')" + 
+                        "\nUPDATE Registration SET CertificateID = '" + inputID.getText() + "' WHERE CursistEmail = '" + emailMenu.getValue() + "' AND CourseName = '" + coursesMenu.getValue() + "'";
                 System.out.println(SQL);
                 stmt.executeUpdate(SQL);
         } catch (SQLException ex) {
@@ -137,7 +204,7 @@ public Parent getView() {
 
     //ADD ALL TO VBOX
     vertBox.getChildren()
-            .addAll(createCertificate, name, gradeSpinner, reviewer, btnSave, backButton);
+            .addAll(createCertificate, name, email, course, gradeSpinner, reviewer, btnSave, backButton);
 
     return layout;
 }

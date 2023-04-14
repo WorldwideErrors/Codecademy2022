@@ -153,9 +153,9 @@ public class UpdateRegistration {
             }
 
         });
-   //HOMEBUTTON
-          Button backButton = new Button("Back to Home Screen");
-        
+        //HOMEBUTTON
+        Button backButton = new Button("Back to Home Screen");
+
         backButton.setOnAction((event -> {
             Node node = (Node) event.getSource();
             Stage thisStage = (Stage) node.getScene().getWindow();
@@ -163,7 +163,6 @@ public class UpdateRegistration {
             gui.start(thisStage);
         }));
 
-        
         //ADD ALL TO VBOX
         vertBox.getChildren()
                 .addAll(createCur, email, course, date, updateRegistration, backButton);
