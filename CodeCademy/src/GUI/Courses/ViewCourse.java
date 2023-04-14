@@ -1,6 +1,7 @@
 package GUI.Courses;
 
 import DatabaseConnection.DatabaseConnection;
+import GUI.InterfaceGUI;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -24,6 +26,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class ViewCourse {
     ArrayList<String> courses = new ArrayList<>();
@@ -228,9 +231,19 @@ public class ViewCourse {
         }
         );
 
+           //HOMEBUTTON
+          Button backButton = new Button("Back to Home Screen");
+        
+        backButton.setOnAction((event -> {
+            Node node = (Node) event.getSource();
+            Stage thisStage = (Stage) node.getScene().getWindow();
+            InterfaceGUI gui = new InterfaceGUI();
+            gui.start(thisStage);
+        }));
+
         //ADD ALL TO VBOX
         vertBox.getChildren()
-                .addAll(getCourseText, courseBox, viewCourse);
+                .addAll(getCourseText, courseBox, viewCourse, backButton);
 
         return layout;
     }

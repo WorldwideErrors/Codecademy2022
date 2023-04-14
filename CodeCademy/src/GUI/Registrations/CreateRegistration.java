@@ -7,6 +7,7 @@ package GUI.Registrations;
 
 import Curriculum.Course;
 import DatabaseConnection.DatabaseConnection;
+import GUI.InterfaceGUI;
 import Papers.Registration;
 import People.Cursist;
 import java.sql.ResultSet;
@@ -16,6 +17,7 @@ import java.sql.Statement;
 import java.util.Date;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -28,6 +30,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class CreateRegistration {
 
@@ -140,10 +143,20 @@ public class CreateRegistration {
             }
 
         });
+           //HOMEBUTTON
+          Button backButton = new Button("Back to Home Screen");
+        
+        backButton.setOnAction((event -> {
+            Node node = (Node) event.getSource();
+            Stage thisStage = (Stage) node.getScene().getWindow();
+            InterfaceGUI gui = new InterfaceGUI();
+            gui.start(thisStage);
+        }));
+
 
         //ADD ALL TO VBOX
         vertBox.getChildren()
-                .addAll(createCur, email, course, date, addRegistration);
+                .addAll(createCur, email, course, date, addRegistration, backButton);
 
         return layout;
     }

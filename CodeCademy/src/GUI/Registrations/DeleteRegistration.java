@@ -6,6 +6,7 @@
 package GUI.Registrations;
 
 import DatabaseConnection.DatabaseConnection;
+import GUI.InterfaceGUI;
 import People.Cursist;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -30,6 +32,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class DeleteRegistration {
 
@@ -133,9 +136,19 @@ public class DeleteRegistration {
 
         });
 
+           //HOMEBUTTON
+          Button backButton = new Button("Back to Home Screen");
+        
+        backButton.setOnAction((event -> {
+            Node node = (Node) event.getSource();
+            Stage thisStage = (Stage) node.getScene().getWindow();
+            InterfaceGUI gui = new InterfaceGUI();
+            gui.start(thisStage);
+        }));
+
         //ADD ALL TO VBOX
         vertBox.getChildren()
-                .addAll(createCur, email, course, addRegistration);
+                .addAll(createCur, email, course, addRegistration, backButton);
 
         return layout;
     }

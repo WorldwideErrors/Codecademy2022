@@ -3,11 +3,25 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Registrations/ViewRegistration.java</file>
             <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/test/MailToolsTest.java</file>
-            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/InterfaceGUI.java</file>
-            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Accounts/ViewCursist.java</file>
+            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Accounts/DeleteCursist.java</file>
+            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Certificates/CreateCertificate.java</file>
             <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Accounts/CreateCursist.java</file>
             <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Courses/ViewCourse.java</file>
+            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Accounts/UpdateCursist.java</file>
+            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Registrations/CreateRegistration.java</file>
+            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Statistics/Top.java</file>
+            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Courses/DeleteCourse.java</file>
+            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Certificates/UpdateCertificate.java</file>
+            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Certificates/DeleteCertificate.java</file>
+            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/InterfaceGUI.java</file>
+            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Registrations/UpdateRegistration.java</file>
+            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Courses/CreateCourse.java</file>
+            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Accounts/ViewCursist.java</file>
+            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Certificates/ViewCertificate.java</file>
+            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Registrations/DeleteRegistration.java</file>
+            <file>file:/C:/Users/Janko/Documents/GitKrakenRe/Codecademy2022/CodeCademy/src/GUI/Courses/updateCourse.java</file>
         </group>
     </open-files>
 </project-private>

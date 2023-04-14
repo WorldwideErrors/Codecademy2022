@@ -10,10 +10,12 @@ import java.sql.*;
 import java.util.ArrayList;
 
 import Curriculum.Course;
+import GUI.InterfaceGUI;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -26,6 +28,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  *
@@ -99,9 +102,19 @@ public class DeleteCertificate {
             }
         });
 
+           //HOMEBUTTON
+          Button backButton = new Button("Back to Home Screen");
+        
+        backButton.setOnAction((event -> {
+            Node node = (Node) event.getSource();
+            Stage thisStage = (Stage) node.getScene().getWindow();
+            InterfaceGUI gui = new InterfaceGUI();
+            gui.start(thisStage);
+        }));
+
         //ADD ALL TO VBOX
         vertBox.getChildren()
-                .addAll(delCourse, certificateBox, btnDelete);
+                .addAll(delCourse, certificateBox, btnDelete, backButton);
 
         return layout;
     }

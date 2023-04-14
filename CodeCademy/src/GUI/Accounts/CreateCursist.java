@@ -5,13 +5,15 @@
  */
 package GUI.Accounts;
 
-
 import java.sql.*;
 import DatabaseConnection.DatabaseConnection;
 import GUI.InterfaceGUI;
 import People.Cursist;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -180,6 +182,13 @@ public class CreateCursist {
         });
         //HOME BUTTON
         Button backButton = new Button("Back to Home Screen");
+        
+        backButton.setOnAction((event -> {
+            Node node = (Node) event.getSource();
+            Stage thisStage = (Stage) node.getScene().getWindow();
+            InterfaceGUI gui = new InterfaceGUI();
+            gui.start(thisStage);
+        }));
 
 //ADD ALL TO VBOX
         vertBox.getChildren()
@@ -187,4 +196,5 @@ public class CreateCursist {
 
         return layout;
     }
+
 }

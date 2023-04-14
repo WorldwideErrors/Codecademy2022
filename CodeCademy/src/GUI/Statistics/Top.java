@@ -6,10 +6,13 @@
 package GUI.Statistics;
 
 import DatabaseConnection.DatabaseConnection;
+import GUI.InterfaceGUI;
 import java.sql.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -18,6 +21,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  *
@@ -210,6 +214,16 @@ public class Top {
             ex.printStackTrace();
         }
 
+           //HOMEBUTTON
+          Button backButton = new Button("Back to Home Screen");
+        
+        backButton.setOnAction((event -> {
+            Node node = (Node) event.getSource();
+            Stage thisStage = (Stage) node.getScene().getWindow();
+            InterfaceGUI gui = new InterfaceGUI();
+            gui.start(thisStage);
+        }));
+
         //ADDING TO VBOX
         topBoth.getChildren().addAll(vboxWebcast, vboxCourse);
         topGender.getChildren().addAll(vboxFemale, vboxMale);
@@ -219,7 +233,7 @@ public class Top {
         vboxWebcast.getChildren().addAll(labelWebcast, infoWebcast);
         vboxFemale.getChildren().addAll(labelFemale, infoFemale);
         vboxMale.getChildren().addAll(labelMale, infoMale);
-        vertBox.getChildren().addAll(welcome, underMessage, topBoth, topGender);
+        vertBox.getChildren().addAll(welcome, underMessage, topBoth, topGender, backButton);
 
         return layout;
     }

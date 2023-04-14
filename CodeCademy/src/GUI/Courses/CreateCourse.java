@@ -6,9 +6,11 @@ import Curriculum.Course;
 import Curriculum.Level;
 import Curriculum.Status;
 import DatabaseConnection.DatabaseConnection;
+import GUI.InterfaceGUI;
 import People.Cursist;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -25,6 +27,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class CreateCourse {
 
@@ -116,10 +119,21 @@ public Parent getView() {
         }
 
     });
+    
+       //HOMEBUTTON
+          Button backButton = new Button("Back to Home Screen");
+        
+        backButton.setOnAction((event -> {
+            Node node = (Node) event.getSource();
+            Stage thisStage = (Stage) node.getScene().getWindow();
+            InterfaceGUI gui = new InterfaceGUI();
+            gui.start(thisStage);
+        }));
+
 
     //ADD ALL TO VBOX
     vertBox.getChildren()
-            .addAll(createCur, name, courseInfo, courseLevel, courseStatus, saveCursist);
+            .addAll(createCur, name, courseInfo, courseLevel, courseStatus, saveCursist, backButton);
 
     return layout;
 }

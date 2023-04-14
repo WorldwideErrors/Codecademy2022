@@ -6,11 +6,13 @@
 package GUI.Accounts;
 
 import DatabaseConnection.DatabaseConnection;
+import GUI.InterfaceGUI;
 import java.sql.*;
 import People.Cursist;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -23,6 +25,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  *
@@ -91,10 +94,19 @@ public class DeleteCursist {
                 ex.printStackTrace();
             }
         });
+        //HOMEBUTTON
+          Button backButton = new Button("Back to Home Screen");
+        
+        backButton.setOnAction((event -> {
+            Node node = (Node) event.getSource();
+            Stage thisStage = (Stage) node.getScene().getWindow();
+            InterfaceGUI gui = new InterfaceGUI();
+            gui.start(thisStage);
+        }));
 
         //ADD ALL TO VBOX
         vertBox.getChildren()
-                .addAll(createEmp, underMessage, email, deleteCursist);
+                .addAll(createEmp, underMessage, email, deleteCursist,backButton);
 
         return layout;
     }

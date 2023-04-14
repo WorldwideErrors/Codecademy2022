@@ -8,6 +8,7 @@ package GUI.Certificates;
 import DatabaseConnection.DatabaseConnection;
 import Curriculum.Course;
 import Curriculum.Status;
+import GUI.InterfaceGUI;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -29,6 +31,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  *
@@ -111,9 +114,19 @@ public class UpdateCertificate {
         }
         );
 
+           //HOMEBUTTON
+          Button backButton = new Button("Back to Home Screen");
+        
+        backButton.setOnAction((event -> {
+            Node node = (Node) event.getSource();
+            Stage thisStage = (Stage) node.getScene().getWindow();
+            InterfaceGUI gui = new InterfaceGUI();
+            gui.start(thisStage);
+        }));
+
         //ADD ALL TO VBOX
         vertBox.getChildren()
-                .addAll(updateCourse, cerficateBox, gradeSpinner, btnSave);
+                .addAll(updateCourse, cerficateBox, gradeSpinner, btnSave, backButton);
 
         return layout;
     }
