@@ -7,6 +7,4 @@ Dit document beschrijft de geïntegreerde eindopdracht van de vakken ‘Programm
 
 Groepsleden - Codecademy 7:
 Janko Seremak,
-Jeffrey van Tillo,
-Jeroen van Herwijnen &
-Wouter Suijkerbuijk
+Jeffrey van Tillo
